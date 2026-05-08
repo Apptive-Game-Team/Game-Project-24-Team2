@@ -11,40 +11,51 @@ public class TeacherFSM : MonoBehaviour
 
     TeacherState currentState;
 
-    public Sprite writingSprite;
-    public Sprite prepareSprite;
-    public Sprite watchingSprite;
+    [SerializeField] private Sprite writingSprite;
+    [SerializeField] private Sprite prepareSprite;
+    [SerializeField] private Sprite watchingSprite;
+    [SerializeField] private AudioClip warningSound;
 
     SpriteRenderer sr;
+    AudioSource audioSource;
     float timer = 0f;
     float stateDuration = 0f;
 
-    void Start()
+    private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         ChangeState(TeacherState.Writing);
     }
 
-    void Update()
+    private void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer > stateDuration)
+        if (timer >= stateDuration)
         {
-            if (currentState == TeacherState.Writing)
-                ChangeState(TeacherState.Prepare);
-            else if (currentState == TeacherState.Prepare)
-                ChangeState(TeacherState.Watching);
-            else if (currentState == TeacherState.Watching)
-                ChangeState(TeacherState.Writing);
+            // 현재 상태에 따라 다음 상태로 변경
+            switch (currentState)
+            {
+                case TeacherState.Writing:
+                    ChangeState(TeacherState.Prepare);
+                    break;
+                case TeacherState.Prepare:
+                    ChangeState(TeacherState.Watching);
+                    break;
+                case TeacherState.Watching:
+                    ChangeState(TeacherState.Writing);
+                    break;
+            }
         }
     }
 
-    void ChangeState(TeacherState newState)
+    private void ChangeState(TeacherState newState)
     {
         currentState = newState;
         timer = 0f;
 
+        // 상태에 따른 스프라이트, 지속시간 및 효과음 설정
         switch (newState)
         {
             case TeacherState.Writing:
@@ -55,6 +66,8 @@ public class TeacherFSM : MonoBehaviour
             case TeacherState.Prepare:
                 sr.sprite = prepareSprite;
                 stateDuration = 1f;
+                if (audioSource != null && warningSound != null)
+                    audioSource.PlayOneShot(warningSound);
                 break;
 
             case TeacherState.Watching:
@@ -66,6 +79,6 @@ public class TeacherFSM : MonoBehaviour
 
     public bool IsWatching()
     {
-        return currentState == TeacherState.Watching;
+        return currentState == TeacherState.Watching; // 외부에서 감시 여부 확인용
     }
 }
