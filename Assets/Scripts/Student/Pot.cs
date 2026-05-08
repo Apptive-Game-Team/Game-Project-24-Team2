@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Pot : MonoBehaviour
 { 
     [Header("Settings")]
     //가지고 있는 버섯 리스트 (오브젝트 형태로 저장)
-    public List<GameObject> seeds = new List<GameObject>();
+    public List<GameObject> Spores = new List<GameObject>();
     //심을 버섯 인덱스 저장
-    public int whatSeed;
+    public int whatSpore;
     //화분에 심겨진 버섯
-    private GameObject pottedSeed;
+    private GameObject pottedSpore;
     //인벤에 있는 버섯 표기 간격 (추후 인벤에 맞게 수정)
-    public float seedGap = 1.5f;
+    public float sporeGap = 1.5f;
     //인벤 첫 번째 버섯과 화분 간격
     public float startingGap = 1.7f;
     //버섯 심은 후 화분 히트박스(y)
@@ -26,8 +27,10 @@ public class Pot : MonoBehaviour
     public float waterMaxGauge = 30f;
     //물 게이지 올라가는 속도
     public float waterGaugeSpeed = 10f;
-
+    //성장도
     public float growth;
+
+    public LayerMask Spore;
     
     private BoxCollider2D potCollider;
     private Transform potTransform;
@@ -42,24 +45,17 @@ public class Pot : MonoBehaviour
     public AudioSource Watering;
 
     [Header("Particle")]
-    public ParticleSystem light;
+    public ParticleSystem pottingEffect;
 
     //테스트용 타이머
     private float timer = 0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
         potCollider = GetComponent<BoxCollider2D>();
         potTransform = GetComponent<Transform>();
 
-        //테스트 인벤 버섯 처음에 안나오게 (테스트용)
-        for (int i = 0; i < seeds.Count; i++)
-        {
-            if (seeds[i].transform != null)
-            {
-                seeds[i].transform.gameObject.SetActive(false);
-            }
-        }
+        DisappearSpores();
 
         //처음에 물 게이지 표시 안되게
         if (waterMaxGaugeTransform != null)
@@ -67,21 +63,17 @@ public class Pot : MonoBehaviour
             waterMaxGaugeTransform.gameObject.SetActive(false);
         }
 
-        Watering.loop = true;
+        InitPotAudio();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (IsClickPot())
         {
-            //화분에 버섯이 심겨있을 때 물주기
-            if (pottedSeed != null)
+            AppearSpores();
+            if (pottedSpore != null)
             {
                 IncreaseWaterGauge();
-
-                //게이지 보이게
-                waterMaxGaugeTransform.gameObject.SetActive(true);
 
                 //물 다 채워지면 성장
                 if (waterGauge >= waterMaxGauge)
@@ -89,105 +81,84 @@ public class Pot : MonoBehaviour
                     CompleteWater();
                 }
             }
-
-            else
-            {
-                //인벤에 있는 버섯들 표시 (화분이 비어있다면)
-                for (int i = 0; i < seeds.Count; i++)
-                {
-                    seeds[i].transform.position = new Vector3(startingGap + potTransform.position.x + i*seedGap, potTransform.position.y, potTransform.position.z);
-                    seeds[i].transform.gameObject.SetActive(true);
-                }
-            }
         }
-
         else
         {
             DecreaseWaterGauge();
-
-            //게이지 사라지기 (게이지가 다 내려갔을 때)
-            if (waterGauge <= waterMinGauge)
-            {
-                waterMaxGaugeTransform.gameObject.SetActive(false);
-            }
         }
 
-        UpdateWaterGaugeBar();
+        PotSpore(); //버섯 심기
 
-        //버섯 심기
-        PotSeed();
+        UpdateWaterGaugeBar(); //게이지 시각화
 
-        //(테스트용) 0.5초마다 의심도 / 돈 표시
+        //(테스트용) 0.5초마다 성장도 표시
         timer += Time.deltaTime;
         if (timer >= 0.5f)
         {
-            if (pottedSeed != null)
+            if (pottedSpore != null)
             {
                 Debug.Log($"성장도 : {growth}");
+                Debug.Log(whatSpore);
             }
             timer = 0f;
         }
     }
 
-    //화분 클릭 감지
-    bool IsClickPot()
+    private void InitPotAudio()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Watering.loop = true;
 
-            return potCollider == Physics2D.OverlapPoint(mousePos); 
+        Potting.loop = false;
+    }
+    private bool IsClickPot()
+    {
+        if (Mouse.current.leftButton.isPressed)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+            Collider2D hit = Physics2D.OverlapPoint(mousePos);
+            
+            if (hit == potCollider)
+            {
+                return true;
+            }
         }
+
         return false;
     }
 
-    //버섯 클릭 감지
-    void PotSeed()
+    //버섯 심기
+    private void PotSpore()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            //어떤 버섯을 심을 건지 선택
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            Collider2D ClickedSeed = Physics2D.OverlapPoint(mousePos);
-
-            if (ClickedSeed != null)
-            {
-                whatSeed = seeds.IndexOf(ClickedSeed.gameObject);
-                if (whatSeed != -1)
-                {
-                    Potting.Play();
-                    //버섯 콜라이더에 막히는거 수정 필요
-                    potCollider.offset = new Vector2(potCollider.offset.x, (pottedsize-1)/2);
-                    potCollider.size = new Vector2(potCollider.size.x, pottedsize);
-                }
-            }
+            //선택한 버섯 위치 조정
+            LocateSpore();
             
-
-            //선택한 버섯 심기(위치는 버섯 이미지 받은 후  재지정), 인벤에서 삭제
-            switch (whatSeed)
+            //선택한 버섯 심기(위치는 버섯 이미지 받은 후 재지정), 인벤에서 삭제
+            switch (whatSpore)
             {
                 case 0:
                     {
-                    SeedListManage(0);
+                    SporeListManage(0);
                     }
                     break;
                 
                 case 1:
                     {
-                    SeedListManage(1);
+                    SporeListManage(1);
                     }
                     break;
 
                 case 2:
                     {
-                    SeedListManage(2);
+                    SporeListManage(2);
                     }
                     break;
 
                 case 3:
                     {
-                    SeedListManage(3);
+                    SporeListManage(3);
                     }
                     break;
 
@@ -197,37 +168,61 @@ public class Pot : MonoBehaviour
         }
     }
 
-    void SeedListManage(int idx)
+    private void LocateSpore()
     {
-        if (pottedSeed != null)
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        Collider2D ClickedSpore = Physics2D.OverlapPoint(mousePos);
+        if (ClickedSpore != null)
         {
-            seeds.Insert(idx, pottedSeed);
-            seeds[idx].transform.position = new Vector3(startingGap + potTransform.position.x + idx*seedGap, potTransform.position.y, potTransform.position.z);
-            pottedSeed = seeds[idx + 1];
-            seeds[idx + 1].transform.position = new Vector3(potTransform.position.x, potTransform.position.y + 1f, potTransform.position.z);
-            light.transform.position = seeds[idx + 1].transform.position;
-            light.Play();
-            seeds.RemoveAt(idx + 1);
+            if (ClickedSpore.gameObject.layer == LayerMask.NameToLayer("Spore"))
+            {
+                whatSpore = Spores.IndexOf(ClickedSpore.gameObject);
+                Potting.Play();
+                //버섯 콜라이더에 막히는거 수정 필요
+                potCollider.offset = new Vector2(potCollider.offset.x, (pottedsize-1)/2);
+                potCollider.size = new Vector2(potCollider.size.x, pottedsize);
+            }
+            else
+            {
+                whatSpore = -1;
+            }
         }
         else
         {
-            pottedSeed = seeds[idx];
-            seeds[idx].transform.position = new Vector3(potTransform.position.x, potTransform.position.y + 1f, potTransform.position.z);
-            light.transform.position = seeds[idx].transform.position;
-            light.Play();
-            seeds.RemoveAt(idx);
+            whatSpore = -1;
         }
     }
 
-    //Book 게이지 올리기
-    void IncreaseWaterGauge()
+    private void SporeListManage(int idx)
+    {
+        if (pottedSpore != null)
+        {
+            Spores.Insert(idx, pottedSpore);
+            Spores[idx].transform.position = new Vector3(startingGap + potTransform.position.x + idx*sporeGap, potTransform.position.y, potTransform.position.z);
+            pottedSpore = Spores[idx + 1];
+            Spores[idx + 1].transform.position = new Vector3(potTransform.position.x, potTransform.position.y + 1f, potTransform.position.z);
+            pottingEffect.transform.position = Spores[idx + 1].transform.position;
+            pottingEffect.Play();
+            Debug.Log("반짝반짝");
+            Spores.RemoveAt(idx + 1);
+        }
+        else
+        {
+            pottedSpore = Spores[idx];
+            Spores[idx].transform.position = new Vector3(potTransform.position.x, potTransform.position.y + 1f, potTransform.position.z);
+            pottingEffect.transform.position = Spores[idx].transform.position;
+            pottingEffect.Play();
+            Spores.RemoveAt(idx);
+        }
+    }
+
+    private void IncreaseWaterGauge()
     {
         if (waterGauge < waterMaxGauge)
         {
             waterGauge += waterGaugeSpeed * Time.deltaTime;
-
             waterGauge = Mathf.Min(waterGauge, waterMaxGauge);
-
             //물 주는 소리
             if (!Watering.isPlaying)
             {
@@ -236,15 +231,13 @@ public class Pot : MonoBehaviour
         }
     }
 
-    //Book 게이지 다 찼을 때, 초기화 + 의심도 내리기 or 보상 주기
-    void CompleteWater()
+    private void CompleteWater()
     {
         waterGauge = 0f;
         growth += 10f;
     }
 
-    //Book 게이지 내리기
-    void DecreaseWaterGauge()
+    private void DecreaseWaterGauge()
     {
         if (waterGauge > waterMinGauge)
             {
@@ -256,12 +249,56 @@ public class Pot : MonoBehaviour
         Watering.Stop();
     }
 
-    //게이지 움직임
-    void UpdateWaterGaugeBar()
+    private void AppearWaterGauge()
     {
-        if (waterGaugeTransform != null)
+        waterMaxGaugeTransform.gameObject.SetActive(true);
+    }
+
+    private void DisappearWaterGauge()
+    {
+        if (waterGauge <= waterMinGauge) //게이지 사라지기 (게이지가 다 내려갔을 때)
         {
-            waterGaugeTransform.localScale = new Vector3(2 * waterGauge / waterMaxGauge, waterGaugeTransform.localScale.y, waterGaugeTransform.localScale.z);
+            waterMaxGaugeTransform.gameObject.SetActive(false);
         }
+    }
+
+    private void UpdateWaterGaugeBar()
+    {
+        if (pottedSpore != null)
+        {
+            if (IsClickPot())
+            {
+                AppearWaterGauge();
+            }
+            else
+            {
+                DisappearWaterGauge();
+            }
+
+            if (waterGaugeTransform != null) //게이지 시각화
+            {
+                waterGaugeTransform.localScale = new Vector3(2 * waterGauge / waterMaxGauge, waterGaugeTransform.localScale.y, waterGaugeTransform.localScale.z);
+            }
+        }
+    }
+
+    private void AppearSpores()
+    {
+        for (int i = 0; i < Spores.Count; i++)
+        {
+            Spores[i].transform.position = new Vector3(startingGap + potTransform.position.x + i*sporeGap, potTransform.position.y, potTransform.position.z);
+            Spores[i].transform.gameObject.SetActive(true);
+        }
+
+    }
+
+    private void DisappearSpores()
+    {
+        for (int i = 0; i < Spores.Count; i++)
+        {
+            Spores[i].transform.position = new Vector3(startingGap + potTransform.position.x + i*sporeGap, potTransform.position.y, potTransform.position.z);
+            Spores[i].transform.gameObject.SetActive(false);
+        }
+    
     }
 }
