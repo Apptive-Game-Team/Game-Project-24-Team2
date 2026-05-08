@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.InputSystem;
 
 public class Book : MonoBehaviour
 {
@@ -47,41 +46,61 @@ public class Book : MonoBehaviour
 
     //디버깅 최적화용(나중에 지워야함)
     private float timer = 0f;
-    private void Start()
+    void Start()
     {
         bookCollider = GetComponent<BoxCollider2D>();
 
+        //처음에 책 게이지 표시 안되게
         if (bookMaxGaugeTransform != null)
         {
             bookMaxGaugeTransform.gameObject.SetActive(false);
         }
 
-        InitBookAudio();
+        Pencil.loop = true;
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
+        //Book 클릭 시
         if (IsClickBook())
         {
+            //게이지 증가
             IncreaseBookGauge();
 
+            //게이지 나타나기
+            bookMaxGaugeTransform.gameObject.SetActive(true);
+
+            //Book 게이지 다 차면 초기화 + 의심도 감소
             if (bookGauge >= bookMaxGauge)
             {
                 CompleteBook();
             }
 
-            //소리 재생(처음 클릭 시점만)
-            BookOpenSound();
+            //소리 재생(처음 시점만)
+            if (Input.GetMouseButtonDown(0))
+            {
+                BookOpen.Play();
+            }
+
         }
+        //Book 클릭 아닐 시
         else
         {
+            //게이지 감소
             DecreaseBookGauge();
+
+            //게이지 사라지기 (게이지가 다 내려갔을 때)
+            if (bookGauge <= bookMinGauge)
+            {
+                bookMaxGaugeTransform.gameObject.SetActive(false);
+            }
         }
 
         //게이지 시각화
         UpdateBookGaugeBar();
 
-        //(테스트용 추후 삭제 예정) 0.5초마다 의심도 / 돈 표시
+        //(테스트용) 0.5초마다 의심도 / 돈 표시
         timer += Time.deltaTime;
         if (timer >= 0.5f)
         {
@@ -90,31 +109,21 @@ public class Book : MonoBehaviour
         }
     }
 
-    private void InitBookAudio()
+    //Book에 마우스 클릭 감지
+    bool IsClickBook()
     {
-        Pencil.loop = true;
-
-        BookOpen.loop = false;
-    }
-
-    private bool IsClickBook()
-    {
-        if (Mouse.current.leftButton.isPressed)
+        if (Input.GetMouseButton(0))
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            Collider2D hit = Physics2D.OverlapPoint(mousePos);
-            
-            if (hit == bookCollider)
-            {
-                return true;
-            }
+            return bookCollider == Physics2D.OverlapPoint(mousePos); 
         }
 
         return false;
     }
 
-    private void IncreaseBookGauge()
+    //Book 게이지 올리기
+    void IncreaseBookGauge()
     {
         if (bookGauge < bookMaxGauge)
         {
@@ -130,20 +139,29 @@ public class Book : MonoBehaviour
             
     }
 
-    //Book 게이지 다 찼을 때
-    private void CompleteBook()
+    //Book 게이지 다 찼을 때, 초기화 + 의심도 내리기 or 보상 주기
+    void CompleteBook()
     {
-        bookGauge = 0f; //게이지 초기화
-        doubtGauge -= doubtGaugeReduction;
-        if (doubtGauge < doubtMinGauge)
+        bookGauge = 0f;
+        //의심 게이지 = 0일때, 보상 지급
+        if (doubtGauge <= doubtMinGauge)
         {
-            money += (doubtMinGauge - doubtGauge)/doubtGaugeReduction * moneyGet; //보상 지급
-            doubtGauge = doubtMinGauge;
+            money += moneyGet;
         }
-
+        //의심 게이지 != 0일때, 의심 게이지 감소 + 의심 게이지 음수일 때 처리
+        else
+        {
+            doubtGauge -= doubtGaugeReduction;
+            if (doubtGauge < doubtMinGauge)
+            {
+                money += (doubtMinGauge - doubtGauge)/doubtGaugeReduction * moneyGet;
+                doubtGauge = doubtMinGauge;
+            }
+        }
     }
 
-    private void DecreaseBookGauge()
+    //Book 게이지 내리기
+    void DecreaseBookGauge()
     {
         if (bookGauge > bookMinGauge)
             {
@@ -151,45 +169,16 @@ public class Book : MonoBehaviour
 
                 bookGauge = Mathf.Max(bookGauge, bookMinGauge);
             }
-
+        //소리 끄기
         Pencil.Stop();
     }
 
-    private void UpdateBookGaugeBar()
+    //게이지 움직임
+    void UpdateBookGaugeBar()
     {
-        if (IsClickBook())
-        {
-            AppearBookGauge();
-        }
-        else
-        {
-            DisappearBookGauge();
-        }
-
-        if (bookGaugeTransform != null) //게이지 시각화
+        if (bookGaugeTransform != null)
         {
             bookGaugeTransform.localScale = new Vector3(2 * bookGauge / bookMaxGauge, bookGaugeTransform.localScale.y, bookGaugeTransform.localScale.z);
-        }
-    }
-
-    private void AppearBookGauge()
-    {
-        bookMaxGaugeTransform.gameObject.SetActive(true);
-    }
-
-    private void DisappearBookGauge()
-    {
-        if (bookGauge <= bookMinGauge) //게이지가 다 내려갔을 때만 안보이게
-            {
-                bookMaxGaugeTransform.gameObject.SetActive(false);
-            }
-    }
-
-    private void BookOpenSound() //클릭한 시점에만 소리 재생
-    {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            BookOpen.Play();
         }
     }
 }

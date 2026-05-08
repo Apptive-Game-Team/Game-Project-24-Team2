@@ -1,38 +1,33 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Drawer : MonoBehaviour
+public class Back : MonoBehaviour
 {
-    private BoxCollider2D drawerCollider;
+    private BoxCollider2D backCollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        drawerCollider = GetComponent<BoxCollider2D>();
+        backCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsClickDrawer())
+        if (IsClickBack())
         {
-            LookDrawer();
+            SceneManager.LoadScene("Default");
         }
     }
 
-    bool IsClickDrawer()
+    bool IsClickBack()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            return drawerCollider == Physics2D.OverlapPoint(mousePos);
+            return backCollider == Physics2D.OverlapPoint(mousePos); 
         }
 
         return false;
-    }
-
-    void LookDrawer()
-    {
-        SceneManager.LoadScene("ClickDrawer");
     }
 }
