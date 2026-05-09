@@ -10,8 +10,8 @@ public partial class Blackboard : MonoBehaviour
     {
         if (noisyPersonText != null)
         {
-            // 텍스트 업데이트
-            noisyPersonText.text = $"떠든 사람: {name}"; 
+            // 떠든사람 텍스트 업데이트
+            noisyPersonText.text = $"떠든 사람 : {name}"; 
 
             Debug.Log("[ 이름 설정 ]");
         }

@@ -33,12 +33,12 @@ public class BlackboardLife : MonoBehaviour
             // 5획이 채워지면 게임 오버 처리
             if (currentDamage >= 5)
             {
-                GmaeOver();
+                GameOver();
             }
         }
     }
 
-    private void GmaeOver() // 5획 채워졌을 때 실행
+    private void GameOver() // 5획 채워졌을 때 실행
     {
         Debug.LogWarning("[ 게임 오버 ]");
     }
