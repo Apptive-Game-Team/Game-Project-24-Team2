@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
+    public static InventoryManager Instance { get; private set; }
 
     [Header("Pencil Texts")]
-    public TMP_Text pencilMushroomText;
-    public TMP_Text pencilSporeText;
+    [SerializeField] private TMP_Text _pencilMushroomText;
+    [SerializeField] private TMP_Text _pencilSporeText;
 
     [Header("Textbook Texts")]
-    public TMP_Text textbookMushroomText;
-    public TMP_Text textbookSporeText;
+    [SerializeField] private TMP_Text _textbookMushroomText;
+    [SerializeField] private TMP_Text _textbookSporeText;
 
     [Header("Blackboard Texts")]
-    public TMP_Text blackboardMushroomText;
-    public TMP_Text blackboardSporeText;
+    [SerializeField] private TMP_Text _blackboardMushroomText;
+    [SerializeField] private TMP_Text _blackboardSporeText;
 
     [Header("Meal Texts")]
-    public TMP_Text mealMushroomText;
-    public TMP_Text mealSporeText;
+    [SerializeField] private TMP_Text _mealMushroomText;
+    [SerializeField] private TMP_Text _mealSporeText;
 
     [Header("Sound")]
-    public AudioSource audioSource;
-    public AudioClip successClip;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _successClip;
 
-    private Dictionary<string, int> counts = new Dictionary<string, int>();
+    private Dictionary<string, int> _counts = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -80,9 +80,9 @@ public class InventoryManager : MonoBehaviour
 
         UpdateUI();
 
-        if (audioSource != null && successClip != null)
+        if (_audioSource != null && _successClip != null)
         {
-            audioSource.PlayOneShot(successClip);
+            _audioSource.PlayOneShot(_successClip);
         }
 
         Debug.Log("조합 성공: 교과서 버섯 + 칠판 버섯 = 급식 포자");
@@ -97,36 +97,48 @@ public class InventoryManager : MonoBehaviour
     {
         string key = GetKey(type, property);
 
-        if (!counts.ContainsKey(key))
+        if (!_counts.ContainsKey(key))
         {
-            counts[key] = 0;
+            _counts[key] = 0;
         }
 
-        return counts[key];
+        return _counts[key];
     }
 
     private void SetCount(ItemType type, ItemProperty property, int count)
     {
-        counts[GetKey(type, property)] = count;
+        _counts[GetKey(type, property)] = count;
     }
 
     private void AddCount(ItemType type, ItemProperty property, int amount)
     {
-        counts[GetKey(type, property)] = GetCount(type, property) + amount;
+        _counts[GetKey(type, property)] = GetCount(type, property) + amount;
     }
 
     private void UpdateUI()
-{
-    pencilMushroomText.text = "버섯 x" + GetCount(ItemType.Pencil, ItemProperty.Mushroom);
-    pencilSporeText.text = "포자 x" + GetCount(ItemType.Pencil, ItemProperty.Spore);
+    {
+        _pencilMushroomText.text =
+            "버섯 x" + GetCount(ItemType.Pencil, ItemProperty.Mushroom);
 
-    textbookMushroomText.text = "버섯 x" + GetCount(ItemType.Textbook, ItemProperty.Mushroom);
-    textbookSporeText.text = "포자 x" + GetCount(ItemType.Textbook, ItemProperty.Spore);
+        _pencilSporeText.text =
+            "포자 x" + GetCount(ItemType.Pencil, ItemProperty.Spore);
 
-    blackboardMushroomText.text = "버섯 x" + GetCount(ItemType.Blackboard, ItemProperty.Mushroom);
-    blackboardSporeText.text = "포자 x" + GetCount(ItemType.Blackboard, ItemProperty.Spore);
+        _textbookMushroomText.text =
+            "버섯 x" + GetCount(ItemType.Textbook, ItemProperty.Mushroom);
 
-    mealMushroomText.text = "버섯 x" + GetCount(ItemType.Meal, ItemProperty.Mushroom);
-    mealSporeText.text = "포자 x" + GetCount(ItemType.Meal, ItemProperty.Spore);
-}
+        _textbookSporeText.text =
+            "포자 x" + GetCount(ItemType.Textbook, ItemProperty.Spore);
+
+        _blackboardMushroomText.text =
+            "버섯 x" + GetCount(ItemType.Blackboard, ItemProperty.Mushroom);
+
+        _blackboardSporeText.text =
+            "포자 x" + GetCount(ItemType.Blackboard, ItemProperty.Spore);
+
+        _mealMushroomText.text =
+            "버섯 x" + GetCount(ItemType.Meal, ItemProperty.Mushroom);
+
+        _mealSporeText.text =
+            "포자 x" + GetCount(ItemType.Meal, ItemProperty.Spore);
+    }
 }

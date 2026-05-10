@@ -4,51 +4,56 @@ using UnityEngine.UI;
 
 public class DragItemButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
-    public ItemType itemType;
+    [SerializeField] private ItemType _itemType;
 
-    private GameObject dragIcon;
-    private Canvas canvas;
+    private GameObject _dragIcon;
+    private Canvas _canvas;
 
     private void Start()
     {
-        canvas = GetComponentInParent<Canvas>();
+        _canvas = GetComponentInParent<Canvas>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        dragIcon = new GameObject("DragIcon");
-        dragIcon.transform.SetParent(canvas.transform, false);
+        _dragIcon = new GameObject("DragIcon");
+        _dragIcon.transform.SetParent(_canvas.transform, false);
 
-        Image iconImage = dragIcon.AddComponent<Image>();
-        iconImage.raycastTarget = false;
+        Image dragIconImage = _dragIcon.AddComponent<Image>();
+        dragIconImage.raycastTarget = false;
 
         Image originalImage = GetComponent<Image>();
+
         if (originalImage != null)
         {
-            iconImage.sprite = originalImage.sprite;
-            iconImage.color = originalImage.color;
+            dragIconImage.sprite = originalImage.sprite;
+            dragIconImage.color = originalImage.color;
         }
 
-        RectTransform rect = dragIcon.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(100, 100);
+        RectTransform rectTransform = _dragIcon.GetComponent<RectTransform>();
+        rectTransform.sizeDelta = new Vector2(100, 100);
 
-        dragIcon.transform.position = eventData.position;
+        _dragIcon.transform.position = eventData.position;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (dragIcon != null)
+        if (_dragIcon == null)
         {
-            dragIcon.transform.position = eventData.position;
+            return;
         }
+
+        _dragIcon.transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (dragIcon != null)
+        if (_dragIcon == null)
         {
-            Destroy(dragIcon);
+            return;
         }
+
+        Destroy(_dragIcon);
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -60,6 +65,6 @@ public class DragItemButton : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             return;
         }
 
-        InventoryManager.Instance.TryCombine(draggedButton.itemType, this.itemType);
+        InventoryManager.Instance.TryCombine(draggedButton._itemType, _itemType);
     }
 }

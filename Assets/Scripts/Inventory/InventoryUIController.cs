@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class InventoryUIController : MonoBehaviour
 {
-    public GameObject inventoryPanel;
-    public GameObject openButton;
+    [SerializeField] private GameObject _inventoryPanel;
+    [SerializeField] private GameObject _openButton;
 
     public void OpenInventory()
     {
-        inventoryPanel.SetActive(true);
-        openButton.SetActive(false);
+        _inventoryPanel.SetActive(true);
+        _openButton.SetActive(false);
     }
 
     public void CloseInventory()
     {
-        inventoryPanel.SetActive(false);
-        openButton.SetActive(true);
+        _inventoryPanel.SetActive(false);
+        _openButton.SetActive(true);
     }
 }
