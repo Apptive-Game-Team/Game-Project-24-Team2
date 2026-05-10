@@ -625,6 +625,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1774423901997972, guid: fb1382d96035273428c39219b79c8b64, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 1936934865}
+    - target: {fileID: 1774423901997972, guid: fb1382d96035273428c39219b79c8b64, type: 3}
+      propertyPath: _successClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a8d7b51b44b84cda83fd691662e7592, type: 3}
+    - target: {fileID: 1774423901997972, guid: fb1382d96035273428c39219b79c8b64, type: 3}
       propertyPath: mealSporeText
       value: 
       objectReference: {fileID: 1803295869}
@@ -2295,6 +2303,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!82 &1936934865 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7765456611486290673, guid: fb1382d96035273428c39219b79c8b64, type: 3}
+  m_PrefabInstance: {fileID: 738986693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2078879516 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4189096615264182868, guid: fb1382d96035273428c39219b79c8b64, type: 3}
