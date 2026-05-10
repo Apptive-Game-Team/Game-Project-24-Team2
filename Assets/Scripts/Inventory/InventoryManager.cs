@@ -116,17 +116,17 @@ public class InventoryManager : MonoBehaviour
     }
 
     private void UpdateUI()
-    {
-        pencilMushroomText.text = "버섯 x" + GetCount(ItemType.Pencil, ItemProperty.Mushroom);
-        pencilSporeText.text = "포자 x" + GetCount(ItemType.Pencil, ItemProperty.Spore);
+{
+    pencilMushroomText.text = "버섯 x" + GetCount(ItemType.Pencil, ItemProperty.Mushroom);
+    pencilSporeText.text = "포자 x" + GetCount(ItemType.Pencil, ItemProperty.Spore);
 
-        textbookMushroomText.text = "버섯 x" + GetCount(ItemType.Textbook, ItemProperty.Mushroom);
-        textbookSporeText.text = "포자 x" + GetCount(ItemType.Textbook, ItemProperty.Spore);
+    textbookMushroomText.text = "버섯 x" + GetCount(ItemType.Textbook, ItemProperty.Mushroom);
+    textbookSporeText.text = "포자 x" + GetCount(ItemType.Textbook, ItemProperty.Spore);
 
-        blackboardMushroomText.text = "버섯 x" + GetCount(ItemType.Blackboard, ItemProperty.Mushroom);
-        blackboardSporeText.text = "포자 x" + GetCount(ItemType.Blackboard, ItemProperty.Spore);
+    blackboardMushroomText.text = "버섯 x" + GetCount(ItemType.Blackboard, ItemProperty.Mushroom);
+    blackboardSporeText.text = "포자 x" + GetCount(ItemType.Blackboard, ItemProperty.Spore);
 
-        mealMushroomText.text = "버섯 x" + GetCount(ItemType.Meal, ItemProperty.Mushroom);
-        mealSporeText.text = "포자 x" + GetCount(ItemType.Meal, ItemProperty.Spore);
-    }
+    mealMushroomText.text = "버섯 x" + GetCount(ItemType.Meal, ItemProperty.Mushroom);
+    mealSporeText.text = "포자 x" + GetCount(ItemType.Meal, ItemProperty.Spore);
+}
 }

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: a7053d32b341531409408f6ca2e07ffe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shopCanvasPrefab: {fileID: 4362509144495401895, guid: f84fe057dee3f2c479c1760de61f7b56, type: 3}
+  - shopItemPrefab: {fileID: 2715244950324966866, guid: 3aef6921870809545ae8b65c63bb1aee, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
