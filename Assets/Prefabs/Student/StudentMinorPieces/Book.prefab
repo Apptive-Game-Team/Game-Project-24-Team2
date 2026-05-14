@@ -397,21 +397,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c258e2f39c784b46b7570f9348efca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Book
-  bookGaugeSpeed: 10
-  bookGauge: 0
-  bookMaxGauge: 30
-  bookMinGauge: 0
-  doubtReduction: 10
-  doubtGauge: 25
-  doubtMaxGauge: 100
-  doubtMinGauge: 0
-  doubtGaugeReduction: 10
-  money: 0
-  moneyGet: 50
-  bookMaxGaugeTransform: {fileID: 1602912394949039207}
-  bookGaugeTransform: {fileID: 496460606031863243}
-  Pencil: {fileID: 3502410566903474771}
-  BookOpen: {fileID: 1265941552669169605}
+  _bookGaugeSpeed: 10
+  _bookGauge: 0
+  _bookMaxGauge: 30
+  _bookMinGauge: 0
+  _doubtReduction: 10
+  _doubtGauge: 25
+  _doubtMaxGauge: 100
+  _doubtMinGauge: 0
+  _doubtGaugeReduction: 10
+  _money: 0
+  _moneyGet: 50
+  _bookMaxGaugeTransform: {fileID: 1602912394949039207}
+  _bookGaugeTransform: {fileID: 496460606031863243}
+  _Pencil: {fileID: 3502410566903474771}
+  _BookOpen: {fileID: 1265941552669169605}
 --- !u!82 &3502410566903474771
 AudioSource:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f666d96f436f31d46a88140490801b19, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -521,7 +521,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b8e2beb11a179e3428bc0e49c72bd2f1, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
