@@ -63,11 +63,6 @@ public class ShopManager : MonoBehaviour
             
             Button buyButton = shopItemInstance.GetComponentInChildren<Button>(true); // 구매 버튼을 구매 로직과 연결
             buyButton.onClick.AddListener(() => shopPurchaseHandler.TryPurchase(spore));
-
-            // [추가] 모든 아이템이 생성된 직후, 레이아웃을 즉시 갱신하도록 강제함
-    // content가 RectTransform이어야 하므로 형변환이 필요합니다.
-            Canvas.ForceUpdateCanvases(); // 전체 UI 시스템 캔버스 업데이트
-            LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
         }
     }
 
