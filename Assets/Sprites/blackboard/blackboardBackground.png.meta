@@ -3,8 +3,8 @@ guid: 3fe48452c1b3bb64f987fab2c71631cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3641590684313334898
-    second: blackboardBackground_0
+      213: 8565080083218455740
+    second: BlackboardBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blackboardBackground_0
+      name: BlackboardBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 700
-        height: 300
+        width: 2048
+        height: 880
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e8bc12c0198767dc0800000000000000
-      internalID: -3641590684313334898
+      spriteID: cbc5209b4f64dd670800000000000000
+      internalID: 8565080083218455740
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blackboardBackground_0: -3641590684313334898
+      BlackboardBackground_0: 8565080083218455740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
