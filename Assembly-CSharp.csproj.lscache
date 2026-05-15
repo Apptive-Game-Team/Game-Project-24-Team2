@@ -61,6 +61,12 @@ Assets/Scripts/Inventory/
  ItemType.cs
 Assets/Scripts/Items/
  Item.cs
+ MushroomItems/
+  BlackboardMushroomItem.cs
+  MealMushroomItem.cs
+  MushroomItem.cs
+  PencilMushroomItem.cs
+  TextbookMushroomItem.cs
  PotItems/
   NormalPotItem.cs
   PotItem.cs

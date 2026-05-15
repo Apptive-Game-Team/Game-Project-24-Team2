@@ -53,6 +53,8 @@ public class ShopManager : MonoBehaviour
         // 상점 아이템 목록 제작
         foreach (Item item in allItems)
         {
+            if (item.ShopOrder == -1) continue; // ShopOrder가 -1이면 상점에 아이템을 출력 안 함. (버섯 같은 거)
+
             GameObject shopItemInstance = Instantiate(shopItemPrefab, content); // 상점 아이템 목록에 ShopItem 출력
 
             RectTransform rect = shopItemInstance.GetComponent<RectTransform>(); // 이 코드 없으면 아이템이 안 보임;;

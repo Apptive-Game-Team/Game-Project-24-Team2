@@ -15,4 +15,4 @@ MonoBehaviour:
   _itemName: "\uAE09\uC2DD \uD3EC\uC790"
   _price: 999999
   _icon: {fileID: -564754544291652716, guid: e87e4b1edb2dbb3478455b5182958a5c, type: 3}
-  _shopOrder: 3
+  _shopOrder: 4

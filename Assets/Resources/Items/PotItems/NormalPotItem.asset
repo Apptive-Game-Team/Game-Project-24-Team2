@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28b193723a4ab14cae1650c40a83005, type: 3}
   m_Name: NormalPotItem
   m_EditorClassIdentifier: Assembly-CSharp::NormalPotItem
-  _itemName: "\uC544\uC774\uD15C \uC774\uB984"
-  _price: 0
-  _icon: {fileID: 0}
+  _itemName: "\uD654\uBD84"
+  _price: 1000
+  _icon: {fileID: -8095589413084118272, guid: a15ddce1366e7494a8a2eff051ba4ad4, type: 3}
   _shopOrder: 0

@@ -15,4 +15,4 @@ MonoBehaviour:
   _itemName: "\uC5F0\uD544 \uD3EC\uC790"
   _price: 0
   _icon: {fileID: 6483751431026795082, guid: e3623ea0dfaef9b478d310cfa6cd15a6, type: 3}
-  _shopOrder: 0
+  _shopOrder: 1

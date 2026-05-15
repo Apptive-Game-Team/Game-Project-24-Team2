@@ -15,4 +15,4 @@ MonoBehaviour:
   _itemName: "\uAD50\uACFC\uC11C \uD3EC\uC790"
   _price: 0
   _icon: {fileID: 5060975049048996791, guid: bbf6da8ee38818e4695491bfac577092, type: 3}
-  _shopOrder: 1
+  _shopOrder: 2

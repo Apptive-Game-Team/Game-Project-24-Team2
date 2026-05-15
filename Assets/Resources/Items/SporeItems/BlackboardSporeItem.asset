@@ -15,4 +15,4 @@ MonoBehaviour:
   _itemName: "\uCE60\uD310 \uD3EC\uC790"
   _price: 3000
   _icon: {fileID: 5308648637500685060, guid: 5bcb4729e50c64d488f3613d6885e6aa, type: 3}
-  _shopOrder: 2
+  _shopOrder: 3
