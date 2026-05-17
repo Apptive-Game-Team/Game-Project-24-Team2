@@ -1,36 +1,26 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
-    [Header("Pencil Texts")]
-    [SerializeField] private TMP_Text _pencilMushroomText;
-    [SerializeField] private TMP_Text _pencilSporeText;
+    [Header("조합에 사용될 아이템")]
+    [SerializeField] private Item _textbookMushroom;
+    [SerializeField] private Item _blackboardMushroom;
+    [SerializeField] private Item _mealSpore;
 
-    [Header("Textbook Texts")]
-    [SerializeField] private TMP_Text _textbookMushroomText;
-    [SerializeField] private TMP_Text _textbookSporeText;
-
-    [Header("Blackboard Texts")]
-    [SerializeField] private TMP_Text _blackboardMushroomText;
-    [SerializeField] private TMP_Text _blackboardSporeText;
-
-    [Header("Meal Texts")]
-    [SerializeField] private TMP_Text _mealMushroomText;
-    [SerializeField] private TMP_Text _mealSporeText;
-
-    [Header("Sound")]
+    [Header("사운드")]
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _successClip;
-    [Header("Effect")]
-    [SerializeField] private GameObject _combineEffectPrefab;
 
+    [Header("이펙트")]
+    [SerializeField] private GameObject _combineEffectPrefab;
     [SerializeField] private Transform _effectSpawnPoint;
 
-    private Dictionary<string, int> _counts = new Dictionary<string, int>();
+    // 아이템 개수 저장
+    private Dictionary<Item, int> _counts =
+        new Dictionary<Item, int>();
 
     private void Awake()
     {
@@ -39,56 +29,87 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        SetCount(ItemType.Pencil, ItemProperty.Mushroom, 0);
-        SetCount(ItemType.Pencil, ItemProperty.Spore, 0);
-
-        SetCount(ItemType.Textbook, ItemProperty.Mushroom, 3);
-        SetCount(ItemType.Textbook, ItemProperty.Spore, 0);
-
-        SetCount(ItemType.Blackboard, ItemProperty.Mushroom, 3);
-        SetCount(ItemType.Blackboard, ItemProperty.Spore, 0);
-
-        SetCount(ItemType.Meal, ItemProperty.Mushroom, 0);
-        SetCount(ItemType.Meal, ItemProperty.Spore, 0);
-
-        UpdateUI();
+        // 시작 아이템 설정
+        SetCount(_textbookMushroom, 3);
+        SetCount(_blackboardMushroom, 3);
+        SetCount(_mealSpore, 0);
     }
 
-    public void TryCombine(ItemType draggedType, ItemType targetType)
+    // 아이템 개수 반환
+    private int GetCount(Item item)
     {
-        bool isTextbookAndBlackboard =
-            (draggedType == ItemType.Textbook && targetType == ItemType.Blackboard) ||
-            (draggedType == ItemType.Blackboard && targetType == ItemType.Textbook);
+        if (!_counts.ContainsKey(item))
+        {
+            _counts[item] = 0;
+        }
 
-        if (!isTextbookAndBlackboard)
+        return _counts[item];
+    }
+
+    // 아이템 개수 설정
+    private void SetCount(Item item, int count)
+    {
+        _counts[item] = count;
+    }
+
+    // 아이템 개수 추가/감소
+    private void AddCount(Item item, int amount)
+    {
+        _counts[item] = GetCount(item) + amount;
+    }
+
+    // 인벤토리에 아이템 추가
+    public void PutItem(Item item)
+    {
+        AddCount(item, 1);
+
+        Debug.Log(item.ItemName + " 획득");
+    }
+
+    // 아이템 조합 시도
+    public void TryCombine(Item draggedItem, Item targetItem)
+    {
+        // 교과서 버섯 + 칠판 버섯 조합 검사
+        bool isCorrectCombination =
+            (draggedItem == _textbookMushroom &&
+             targetItem == _blackboardMushroom)
+            ||
+            (draggedItem == _blackboardMushroom &&
+             targetItem == _textbookMushroom);
+
+        if (!isCorrectCombination)
         {
             Debug.Log("조합 실패");
             return;
         }
 
-        if (GetCount(ItemType.Textbook, ItemProperty.Mushroom) < 1)
+        // 재료 부족 검사
+        if (GetCount(_textbookMushroom) < 1)
         {
             Debug.Log("교과서 버섯 부족");
             return;
         }
 
-        if (GetCount(ItemType.Blackboard, ItemProperty.Mushroom) < 1)
+        if (GetCount(_blackboardMushroom) < 1)
         {
             Debug.Log("칠판 버섯 부족");
             return;
         }
 
-        AddCount(ItemType.Textbook, ItemProperty.Mushroom, -1);
-        AddCount(ItemType.Blackboard, ItemProperty.Mushroom, -1);
-        AddCount(ItemType.Meal, ItemProperty.Spore, 1);
+        // 재료 제거
+        AddCount(_textbookMushroom, -1);
+        AddCount(_blackboardMushroom, -1);
 
-        UpdateUI();
+        // 결과 아이템 추가
+        AddCount(_mealSpore, 1);
 
+        // 조합 성공 사운드 재생
         if (_audioSource != null && _successClip != null)
         {
             _audioSource.PlayOneShot(_successClip);
         }
 
+        // 조합 성공 이펙트 생성
         if (_combineEffectPrefab != null)
         {
             GameObject effect = Instantiate(
@@ -98,71 +119,15 @@ public class InventoryManager : MonoBehaviour
                 _effectSpawnPoint
             );
 
-            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+            ParticleSystem ps =
+                effect.GetComponent<ParticleSystem>();
 
             if (ps != null)
             {
                 ps.Play();
-                Debug.Log("플레이됨");
             }
-
-            Debug.Log("이펙트 생성됨");
         }
 
-        Debug.Log("조합 성공: 교과서 버섯 + 칠판 버섯 = 급식 포자");
-    }
-
-    private string GetKey(ItemType type, ItemProperty property)
-    {
-        return type.ToString() + "_" + property.ToString();
-    }
-
-    private int GetCount(ItemType type, ItemProperty property)
-    {
-        string key = GetKey(type, property);
-
-        if (!_counts.ContainsKey(key))
-        {
-            _counts[key] = 0;
-        }
-
-        return _counts[key];
-    }
-
-    private void SetCount(ItemType type, ItemProperty property, int count)
-    {
-        _counts[GetKey(type, property)] = count;
-    }
-
-    private void AddCount(ItemType type, ItemProperty property, int amount)
-    {
-        _counts[GetKey(type, property)] = GetCount(type, property) + amount;
-    }
-
-    private void UpdateUI()
-    {
-        _pencilMushroomText.text =
-            "버섯 x" + GetCount(ItemType.Pencil, ItemProperty.Mushroom);
-
-        _pencilSporeText.text =
-            "포자 x" + GetCount(ItemType.Pencil, ItemProperty.Spore);
-
-        _textbookMushroomText.text =
-            "버섯 x" + GetCount(ItemType.Textbook, ItemProperty.Mushroom);
-
-        _textbookSporeText.text =
-            "포자 x" + GetCount(ItemType.Textbook, ItemProperty.Spore);
-
-        _blackboardMushroomText.text =
-            "버섯 x" + GetCount(ItemType.Blackboard, ItemProperty.Mushroom);
-
-        _blackboardSporeText.text =
-            "포자 x" + GetCount(ItemType.Blackboard, ItemProperty.Spore);
-
-        _mealMushroomText.text =
-            "버섯 x" + GetCount(ItemType.Meal, ItemProperty.Mushroom);
-
-        _mealSporeText.text =
-            "포자 x" + GetCount(ItemType.Meal, ItemProperty.Spore);
+        Debug.Log("조합 성공");
     }
 }
