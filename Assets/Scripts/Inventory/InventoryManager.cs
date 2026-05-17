@@ -21,9 +21,6 @@ public class InventoryManager : MonoBehaviour
     [Header("슬롯")]
     [SerializeField] private InventorySlot[] _slots;
 
-    // 아이템 개수 저장
-    private Dictionary<Item, int> _counts =
-        new Dictionary<Item, int>();
 
     private void Awake()
     {
@@ -32,44 +29,76 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        // 시작 아이템 설정
-        SetCount(_textbookMushroom, 3);
-        SetCount(_blackboardMushroom, 3);
-        SetCount(_mealSpore, 0);
-
-        _slots[0].SetItem(_textbookMushroom, 3);
-        _slots[1].SetItem(_blackboardMushroom, 2);
+        PutItem(_textbookMushroom);
+        PutItem(_textbookMushroom);
+        PutItem(_blackboardMushroom);
     }
 
-    // 아이템 개수 반환
-    private int GetCount(Item item)
-    {
-        if (!_counts.ContainsKey(item))
-        {
-            _counts[item] = 0;
-        }
-
-        return _counts[item];
-    }
-
-    // 아이템 개수 설정
-    private void SetCount(Item item, int count)
-    {
-        _counts[item] = count;
-    }
-
-    // 아이템 개수 추가/감소
-    private void AddCount(Item item, int amount)
-    {
-        _counts[item] = GetCount(item) + amount;
-    }
 
     // 인벤토리에 아이템 추가
     public void PutItem(Item item)
     {
-        AddCount(item, 1);
+        // 이미 아이템이 있는 슬롯 찾기
+        foreach (InventorySlot slot in _slots)
+        {
+            if (slot.Item == item)
+            {
+                slot.AddCount(1);
 
-        Debug.Log(item.ItemName + " 획득");
+                Debug.Log(item.ItemName + " 개수 증가");
+
+                return;
+            }
+        }
+
+        // 빈 슬롯 찾기
+        foreach (InventorySlot slot in _slots)
+        {
+            if (slot.Item == null)
+            {
+                slot.SetItem(item, 1);
+
+                Debug.Log(item.ItemName + " 새 슬롯 추가");
+
+                return;
+            }
+        }
+
+        Debug.Log("인벤토리가 가득 찼습니다.");
+    }
+
+    // 특정 아이템 개수 반환
+    private int GetItemCount(Item item)
+    {
+        foreach (InventorySlot slot in _slots)
+        {
+            if (slot.Item == item)
+            {
+                return slot.Count;
+            }
+        }
+
+        return 0;
+    }
+
+    // 아이템 개수 감소
+    private void RemoveItem(Item item, int amount)
+    {
+        foreach (InventorySlot slot in _slots)
+        {
+            if (slot.Item == item)
+            {
+                slot.AddCount(-amount);
+
+                // 개수가 0 이하이면 슬롯 비우기
+                if (slot.Count <= 0)
+                {
+                    slot.Clear();
+                }
+
+                return;
+            }
+        }
     }
 
     // 아이템 조합 시도
@@ -90,24 +119,24 @@ public class InventoryManager : MonoBehaviour
         }
 
         // 재료 부족 검사
-        if (GetCount(_textbookMushroom) < 1)
+        if (GetItemCount(_textbookMushroom) < 1)
         {
             Debug.Log("교과서 버섯 부족");
             return;
         }
 
-        if (GetCount(_blackboardMushroom) < 1)
+        if (GetItemCount(_blackboardMushroom) < 1)
         {
             Debug.Log("칠판 버섯 부족");
             return;
         }
 
         // 재료 제거
-        AddCount(_textbookMushroom, -1);
-        AddCount(_blackboardMushroom, -1);
+        RemoveItem(_textbookMushroom, 1);
+        RemoveItem(_blackboardMushroom, 1);
 
         // 결과 아이템 추가
-        AddCount(_mealSpore, 1);
+        PutItem(_mealSpore);
 
         // 조합 성공 사운드 재생
         if (_audioSource != null && _successClip != null)

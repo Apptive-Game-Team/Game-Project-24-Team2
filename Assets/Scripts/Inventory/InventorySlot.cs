@@ -15,6 +15,7 @@ public class InventorySlot : MonoBehaviour
     private int _count;
 
     public Item Item => _item;
+    public int Count => _count;
 
     // 슬롯에 아이템 설정
     public void SetItem(Item item, int count)
@@ -60,6 +61,6 @@ public class InventorySlot : MonoBehaviour
         _icon.sprite = _item.Icon;
 
         // 개수 표시
-        _countText.text = "x" + _count;
+        _countText.text = _count.ToString();
     }
 }
