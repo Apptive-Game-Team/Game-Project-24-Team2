@@ -10,10 +10,10 @@ public class ShopItem : MonoBehaviour
     [SerializeField] public TextMeshProUGUI priceText;
     [SerializeField] public Button buyButton;
 
-    public void SetData(Spore spore)
+    public void SetData(Item item)
     {
-        iconImage.sprite = spore.Icon;
-        nameText.text = spore.SporeName;
-        priceText.text = $"{spore.Price} 원";
+        iconImage.sprite = item.Icon;
+        nameText.text = item.ItemName;
+        priceText.text = $"{item.Price} 원";
     }
 }

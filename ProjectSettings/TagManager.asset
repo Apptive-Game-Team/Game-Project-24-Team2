@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Shop
-  - 
+  - Spore
   - 
   - 
   - 
@@ -43,6 +43,12 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 183542423
+    locked: 0
+  - name: Blackboard
+    uniqueID: 1041475943
+    locked: 0
+  - name: Teacher
+    uniqueID: 3140930053
     locked: 0
   m_RenderingLayers:
   - Default

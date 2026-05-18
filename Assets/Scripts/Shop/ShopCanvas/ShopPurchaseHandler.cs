@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 [RequireComponent(typeof(AudioSource))]
 public class ShopPurchaseHandler : MonoBehaviour
@@ -8,7 +9,7 @@ public class ShopPurchaseHandler : MonoBehaviour
 
     private int startingMoney = 50000;
     private int currentMoney;
-
+    public static event Action<Item> OnItemPurchased;
     private AudioSource audioSource;
     private AudioClip purchaseCompleteSound;
     private AudioClip purchaseFailSound;
@@ -33,22 +34,25 @@ public class ShopPurchaseHandler : MonoBehaviour
         moneyText.text = $"보유금액 : {currentMoney}원";
     }
 
-    public void TryPurchase(Spore spore)
+    public void TryPurchase(Item item)
     {
-        if (currentMoney >= spore.Price)
+        if (currentMoney >= item.Price)
         {
-            currentMoney -= spore.Price;
+            // 돈 차감
+            currentMoney -= item.Price;
             UpdateMoneyUI();
 
-            Debug.Log($"{spore.SporeName} 구매 성공! -{spore.Price}원");
+            // 아이템 구매 이벤트 전파
+            OnItemPurchased?.Invoke(item);
+
+            // 구매 사운드 출력
             audioSource.PlayOneShot(purchaseCompleteSound);
-            // 인벤토리에 Spore 추가 로직 구현 예정
         }
         else
         {
-            Debug.LogWarning($"금액 부족! 현재 금액: {currentMoney}원 | 필요: {spore.Price}원");
+            // 구매 실패 사운드 출력
             audioSource.PlayOneShot(purchaseFailSound);
-            // 금액 부족 팝업 메뉴 구현 예정
+            
         }
     }
 }

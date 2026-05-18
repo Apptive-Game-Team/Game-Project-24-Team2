@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76094cf86f61c749b82d0ea2d2cb6d2, type: 3}
+  m_Name: MealSporeItem
+  m_EditorClassIdentifier: Assembly-CSharp::MealSpore
+  _itemName: "\uAE09\uC2DD \uD3EC\uC790"
+  _price: 999999
+  _icon: {fileID: -564754544291652716, guid: e87e4b1edb2dbb3478455b5182958a5c, type: 3}
+  _shopOrder: 4

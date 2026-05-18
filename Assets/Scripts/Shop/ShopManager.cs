@@ -38,31 +38,33 @@ public class ShopManager : MonoBehaviour
         openShopSound = Resources.Load<AudioClip>("Shop/OpenBellDoor");
         closeShopSound = Resources.Load<AudioClip>("Shop/CloseBellDoor");
 
-        // Resources/Spores에 위치한 spore asset에 따라 상점 아이템 목록 자동 제작
+        // Resources/Items에 위치한 item asset에 따라 상점 아이템 목록 자동 제작
         PopulateShop();
     }
 
     private void PopulateShop()
     {
-        // Resources 폴더의 "Spores" 폴더 안에 있는 모든 Spore.asset 불러오기
-        Spore[] allSpores = Resources.LoadAll<Spore>("Spores");
+        // Resources 폴더의 "Items" 폴더 안에 있는 모든 Item.asset 불러오기
+        Item[] allItems = Resources.LoadAll<Item>("Items");
 
-        // spore의 shopOrder에 따라 상점 아이템 목록 정렬
-        allSpores = allSpores.OrderBy(spore => spore.shopOrder).ToArray();
+        // item의 shopOrder에 따라 상점 아이템 목록 정렬
+        allItems = allItems.OrderBy(item => item.ShopOrder).ToArray();
 
         // 상점 아이템 목록 제작
-        foreach (Spore spore in allSpores)
+        foreach (Item item in allItems)
         {
+            if (item.ShopOrder == -1) continue; // ShopOrder가 -1이면 상점에 아이템을 출력 안 함. (버섯 같은 거)
+
             GameObject shopItemInstance = Instantiate(shopItemPrefab, content); // 상점 아이템 목록에 ShopItem 출력
 
             RectTransform rect = shopItemInstance.GetComponent<RectTransform>(); // 이 코드 없으면 아이템이 안 보임;;
             rect.localScale = Vector3.one;
 
-            ShopItem shopItem = shopItemInstance.GetComponent<ShopItem>(); // 각 아이템 정보를 spore 에셋과 연동
-            shopItem.SetData(spore); 
+            ShopItem shopItem = shopItemInstance.GetComponent<ShopItem>(); // 각 아이템 정보를 item 에셋과 연동
+            shopItem.SetData(item); 
             
             Button buyButton = shopItemInstance.GetComponentInChildren<Button>(true); // 구매 버튼을 구매 로직과 연결
-            buyButton.onClick.AddListener(() => shopPurchaseHandler.TryPurchase(spore));
+            buyButton.onClick.AddListener(() => shopPurchaseHandler.TryPurchase(item));
         }
     }
 
