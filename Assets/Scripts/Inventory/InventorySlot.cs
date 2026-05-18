@@ -73,7 +73,7 @@ public class InventorySlot : MonoBehaviour,
         }
     }
 
-    // 드롭 처리
+    // 드롭 처리: 빈 슬롯은 이동, 찬 슬롯은 조합 시도
     public void OnDrop(PointerEventData eventData)
     {
         InventorySlot draggedSlot =
@@ -84,23 +84,20 @@ public class InventorySlot : MonoBehaviour,
             return;
         }
 
-        // 자기 자신이면 무시
         if (draggedSlot == this)
         {
             return;
         }
 
-        // 빈 슬롯이면 이동
+        // 빈 슬롯이면 아이템 이동
         if (_item == null)
         {
             SetItem(draggedSlot.Item, draggedSlot.Count);
-
             draggedSlot.Clear();
-
             return;
         }
 
-        // 아이템 슬롯이면 조합 시도
+        // 아이템이 있으면 조합 시도
         InventoryManager.Instance.TryCombine(
             draggedSlot.Item,
             _item
@@ -121,6 +118,12 @@ public class InventorySlot : MonoBehaviour,
     {
         _count += amount;
 
+        UpdateUI();
+    }
+
+    // 슬롯 UI 다시 갱신
+    public void RefreshUI()
+    {
         UpdateUI();
     }
 

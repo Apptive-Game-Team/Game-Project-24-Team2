@@ -5,26 +5,67 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
-    [Header("조합에 사용될 아이템")]
+    private static bool _isShopSubscribed;
+    private static readonly List<Item> _pendingPurchases = new List<Item>();
+
+    [Header("Items")]
     [SerializeField] private Item _textbookMushroom;
     [SerializeField] private Item _blackboardMushroom;
     [SerializeField] private Item _mealSpore;
 
-    [Header("사운드")]
+    [Header("Sound")]
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _successClip;
 
-    [Header("이펙트")]
+    [Header("Effects")]
     [SerializeField] private GameObject _combineEffectPrefab;
     [SerializeField] private Transform _effectSpawnPoint;
     
-    [Header("슬롯")]
+    [Header("Slots")]
     [SerializeField] private InventorySlot[] _slots;
 
 
+    // 게임 시작 시 상점 구매 이벤트 구독
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void InitializeShopSubscription()
+    {
+        if (_isShopSubscribed)
+        {
+            return;
+        }
+
+        ShopPurchaseHandler.OnItemPurchased += HandlePurchasedItem;
+        _isShopSubscribed = true;
+    }
+
+    // 구매한 아이템을 처리하거나 보류 목록에 저장
+    private static void HandlePurchasedItem(Item item)
+    {
+        if (Instance != null)
+        {
+            Instance.PutItem(item);
+            return;
+        }
+
+        // InventoryManager가 아직 초기화되지 않았으면 보류 목록에 추가
+        _pendingPurchases.Add(item);
+    }
+
+    // 초기화: 보류 중인 구매 아이템들을 처리
     private void Awake()
     {
         Instance = this;
+
+        // 인벤토리 초기화 전에 구매된 아이템들을 모두 추가
+        if (_pendingPurchases.Count > 0)
+        {
+            foreach (Item pending in _pendingPurchases)
+            {
+                PutItem(pending);
+            }
+
+            _pendingPurchases.Clear();
+        }
     }
 
     private void Start()
@@ -34,42 +75,37 @@ public class InventoryManager : MonoBehaviour
         // PutItem(_blackboardMushroom);
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        ShopPurchaseHandler.OnItemPurchased += PutItem;
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
-    private void OnDisable()
-    {
-        ShopPurchaseHandler.OnItemPurchased -= PutItem;
-    }
 
-
-    // 인벤토리에 아이템 추가
+    // 인벤토리에 아이템 추가: 같은 아이템 찾으면 개수 증가, 없으면 새 슬롯에 추가
     public void PutItem(Item item)
     {
-        // 이미 아이템이 있는 슬롯 찾기
+        // 이미 있는 같은 아이템 검색
         foreach (InventorySlot slot in _slots)
         {
-            if (slot.Item == item)
+            if (slot.Item != null && AreSameItem(slot.Item, item))
             {
                 slot.AddCount(1);
-
                 Debug.Log(item.ItemName + " 개수 증가");
-
                 return;
             }
         }
 
-        // 빈 슬롯 찾기
+        // 빈 슬롯 검색
         foreach (InventorySlot slot in _slots)
         {
             if (slot.Item == null)
             {
                 slot.SetItem(item, 1);
-
                 Debug.Log(item.ItemName + " 새 슬롯 추가");
-
+                RefreshAllSlots();
                 return;
             }
         }
@@ -77,12 +113,33 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("인벤토리가 가득 찼습니다.");
     }
 
+    // 모든 슬롯의 UI를 다시 그리기 (닫혀있던 인벤토리 열 때 사용)
+    public void RefreshAllSlots()
+    {
+        foreach (InventorySlot slot in _slots)
+        {
+            slot.RefreshUI();
+        }
+    }
+
+    // 두 아이템이 같은 종류인지 비교 (참조 또는 이름+순서로)
+    private bool AreSameItem(Item a, Item b)
+    {
+        if (a == null || b == null)
+        {
+            return false;
+        }
+
+        // 같은 참조이거나 이름과 순서가 같으면 같은 아이템
+        return a == b || (a.ItemName == b.ItemName && a.ShopOrder == b.ShopOrder);
+    }
+
     // 특정 아이템 개수 반환
     private int GetItemCount(Item item)
     {
         foreach (InventorySlot slot in _slots)
         {
-            if (slot.Item == item)
+            if (slot.Item != null && AreSameItem(slot.Item, item))
             {
                 return slot.Count;
             }
@@ -96,7 +153,7 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (InventorySlot slot in _slots)
         {
-            if (slot.Item == item)
+            if (slot.Item != null && AreSameItem(slot.Item, item))
             {
                 slot.AddCount(-amount);
 
