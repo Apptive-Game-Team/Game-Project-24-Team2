@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class TeacherFSM : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class TeacherFSM : MonoBehaviour
         Prepare,
         Watching
     }
+
+    public static event Action OnTeacherTookNotes;
+    public static event Action OnTeacherGaveSignal;
+    public static event Action OnTeacherLookedBack;
+
 
     TeacherState currentState;
 
@@ -34,7 +40,6 @@ public class TeacherFSM : MonoBehaviour
 
         if (timer >= stateDuration)
         {
-            // 현재 상태에 따라 다음 상태로 변경
             switch (currentState)
             {
                 case TeacherState.Writing:
@@ -59,11 +64,15 @@ public class TeacherFSM : MonoBehaviour
         switch (newState)
         {
             case TeacherState.Writing:
+                Debug.Log($"[선생님 이벤트](OnTeacherTookNotes)");
+                OnTeacherTookNotes?.Invoke(); 
                 sr.sprite = writingSprite;
-                stateDuration = Random.Range(5f, 10f);
+                stateDuration = UnityEngine.Random.Range(5f, 10f);
                 break;
 
             case TeacherState.Prepare:
+                Debug.Log($"[선생님 이벤트](OnTeacherGaveSignal)");
+                OnTeacherGaveSignal?.Invoke();
                 sr.sprite = prepareSprite;
                 stateDuration = 1f;
                 if (audioSource != null && warningSound != null)
@@ -71,8 +80,10 @@ public class TeacherFSM : MonoBehaviour
                 break;
 
             case TeacherState.Watching:
+                Debug.Log($"[선생님 이벤트](OnTeacherLookedBack)");
+                OnTeacherLookedBack?.Invoke();
                 sr.sprite = watchingSprite;
-                stateDuration = Random.Range(1f, 3f);
+                stateDuration = UnityEngine.Random.Range(1f, 3f);
                 break;
         }
     }
