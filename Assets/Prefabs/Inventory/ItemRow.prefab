@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d447ea9ea44943a580bf0606a28bd82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragItemButton
-  itemType: 0
+  _item: {fileID: 11400000, guid: afb176036126d194daf828359ca4cae8, type: 2}
 --- !u!1 &6930486590833140710
 GameObject:
   m_ObjectHideFlags: 0

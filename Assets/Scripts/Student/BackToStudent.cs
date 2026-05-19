@@ -16,7 +16,7 @@ public class BackToStudent : MonoBehaviour
     {
         if (IsClickBack())
         {
-            SceneManager.LoadScene("StudentTestScene");
+            SceneManager.LoadScene("MainScene");
         }
     }
 

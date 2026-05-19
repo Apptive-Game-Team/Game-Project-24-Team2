@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AudioListenerManager : MonoBehaviour
+public class DontDestroyOnLoad : MonoBehaviour
 {
     private void Awake()
     {
