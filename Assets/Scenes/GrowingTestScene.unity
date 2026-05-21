@@ -2655,6 +2655,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7047798122931330670, guid: fb1382d96035273428c39219b79c8b64, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f783e69d9b8d2854590eaf8622fd05c7, type: 2}
+    - target: {fileID: 7047798122931330670, guid: fb1382d96035273428c39219b79c8b64, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 96599460280847888, guid: f783e69d9b8d2854590eaf8622fd05c7, type: 2}
+    - target: {fileID: 7047798122931330670, guid: fb1382d96035273428c39219b79c8b64, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3671,11 +3683,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7406977560045423507, guid: 2eabb7f5a6d75eb4cb7580344fcc6b71, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.82
+      value: -7.42
       objectReference: {fileID: 0}
     - target: {fileID: 7406977560045423507, guid: 2eabb7f5a6d75eb4cb7580344fcc6b71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.03
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 7406977560045423507, guid: 2eabb7f5a6d75eb4cb7580344fcc6b71, type: 3}
       propertyPath: m_LocalPosition.z
