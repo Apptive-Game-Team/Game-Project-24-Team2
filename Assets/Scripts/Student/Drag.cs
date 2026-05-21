@@ -27,8 +27,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         _rectTransform = GetComponent<RectTransform>();
         transform.SetParent(transform.root);    //Grid에서 벗어나도록
         image.raycastTarget = false;    //raycast가 화분 감지x, PotLocation감지o
-
-        VisibleGuide(true);
+        if(_dragItemSO is PotItem)
+        {
+            VisibleGuide(true);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -39,7 +41,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnEndDrag(PointerEventData eventData)
     {
         OrderUI(_dragItemSO);
-
         Place(eventData.position); //화분이든 포자든 심어드립니다
         VisibleGuide(false);
         image.raycastTarget = true;

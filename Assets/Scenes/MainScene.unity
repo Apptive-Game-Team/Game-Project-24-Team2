@@ -680,19 +680,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2836421958691659853, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
       propertyPath: m_Name
-      value: StudentTestScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323974095681674560, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323974095681674560, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323974095681674560, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.62
+      value: Studying
       objectReference: {fileID: 0}
     - target: {fileID: 3323974095681674560, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
       propertyPath: m_LocalPosition.x
@@ -733,10 +721,6 @@ PrefabInstance:
     - target: {fileID: 3323974095681674560, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323974095681674560, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
