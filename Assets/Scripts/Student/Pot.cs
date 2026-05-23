@@ -159,6 +159,7 @@ public class Pot : MonoBehaviour
             if (_isGrown && IsClickDownPot()) //버섯이 다 자란 화분을 클릭한 시점에 버섯 수확
             {
                 ReapMushroom(_whatspore);
+                _growth = 0f;
             }
         }
 
