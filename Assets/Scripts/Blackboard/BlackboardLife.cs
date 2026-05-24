@@ -43,13 +43,16 @@ public class BlackboardLife : MonoBehaviour
             // 5획이 채워지면 게임 오버 처리
             if (currentDamage >= 5)
             {
-                GameOver();
+                // GameManager가 존재하는지 체크 후 호출
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.OnGameOver(); 
+                }
+                else
+                {
+                    Debug.LogError("씬에 GameManager가 없습니다!");
+                }
             }
         }
-    }
-
-    private void GameOver() // 5획 채워졌을 때 실행
-    {
-        Debug.LogWarning("[ 게임 오버 ]");
     }
 }
