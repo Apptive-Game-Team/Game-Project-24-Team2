@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -625,6 +625,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot
       objectReference: {fileID: 0}
+    - target: {fileID: 8909159658344870623, guid: b75bd045708f4493f864de523e8c563a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1376709317694987763, guid: c182e2072f76ba649baa4e951054dea0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

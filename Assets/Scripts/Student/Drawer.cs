@@ -21,7 +21,7 @@ public class Drawer : MonoBehaviour
 
     private bool IsClickDrawer()
     {
-        if (Mouse.current.leftButton.isPressed)
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 

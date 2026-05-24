@@ -388,8 +388,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -168}
-  m_SizeDelta: {x: 200, y: 60}
+  m_AnchoredPosition: {x: -5.0314, y: -159.6556}
+  m_SizeDelta: {x: 249.0182, y: 76.6888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2406810337712275704
 CanvasRenderer:
@@ -419,8 +419,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 2188062876976968868, guid: 15624201f12192946bd1fc8866f98139, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -538,7 +538,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAD6C\uB9E4"
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5c5092d01110f345abe79c290b7fc38, type: 2}
   m_sharedMaterial: {fileID: 96599460280847888, guid: a5c5092d01110f345abe79c290b7fc38, type: 2}
@@ -774,8 +776,8 @@ RectTransform:
   m_GameObject: {fileID: 8844182822976353175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.76, y: 0.76, z: 0.76}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4031077669469154215}
   - {fileID: 1890396921332089463}
@@ -809,15 +811,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -4150102590376970215, guid: 42f8a27d3d807dc4dac7a9e0b23b5b5a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

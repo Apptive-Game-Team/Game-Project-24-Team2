@@ -1,7 +1,9 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class InventorySlot : MonoBehaviour,
     IBeginDragHandler,
@@ -9,6 +11,10 @@ public class InventorySlot : MonoBehaviour,
     IEndDragHandler,
     IDropHandler
 {
+    public static event Action<Item> OnDragStarted;
+    public static event Action OnDragCanceled;
+    public static event Action<Item, Vector2, Action<bool>> OnDragEndedWorld;
+
     [Header("UI")]
     [SerializeField] private Image _icon;
     [SerializeField] private TMP_Text _countText;
@@ -27,6 +33,9 @@ public class InventorySlot : MonoBehaviour,
     private void Start()
     {
         _canvas = GetComponentInParent<Canvas>();
+
+        _icon.enabled = false;
+        _countText.text = "";
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -50,7 +59,16 @@ public class InventorySlot : MonoBehaviour,
 
         rect.sizeDelta = new Vector2(80, 80);
 
-        _dragIcon.transform.position = eventData.position;
+        // 스크린 좌표를 Canvas 로컬 좌표로 변환
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _canvas.GetComponent<RectTransform>(),
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 localPoint);
+
+        rect.localPosition = localPoint;
+
+        OnDragStarted?.Invoke(_item);
     }
 
     // 드래그 중 이동
@@ -61,7 +79,14 @@ public class InventorySlot : MonoBehaviour,
             return;
         }
 
-        _dragIcon.transform.position = eventData.position;
+        // 스크린 좌표를 Canvas 로컬 좌표로 변환
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _canvas.GetComponent<RectTransform>(),
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 localPoint);
+
+        _dragIcon.GetComponent<RectTransform>().localPosition = localPoint;
     }
 
     // 드래그 종료
@@ -71,6 +96,21 @@ public class InventorySlot : MonoBehaviour,
         {
             Destroy(_dragIcon);
         }
+
+        // 드래그 종료 시 월드에 이벤트 방송
+        if (Camera.main != null && _item != null)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            OnDragEndedWorld?.Invoke(_item, mousePos, (success) => {
+                if (success)
+                {
+                    AddCount(-1);
+                    if (_count <= 0) Clear();
+                }
+            });
+        }
+
+        OnDragCanceled?.Invoke();
     }
 
     // 드롭 처리: 빈 슬롯은 이동, 찬 슬롯은 조합 시도

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BlackboardLife : MonoBehaviour
 {
+    public static BlackboardLife Instance { get; private set; }
+    
     [Header("Life Counter Settings")]
     [SerializeField] private GameObject[] jungSteps; // Jung1 ~ Jung5 배열
     
@@ -9,6 +11,14 @@ public class BlackboardLife : MonoBehaviour
 
     void Awake()
     {
+        // 싱글톤 인스턴스 할당 및 중복 방지
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         // 게임 시작 시 모든 획을 보이지 않게 초기화
         foreach (GameObject step in jungSteps)
         {
