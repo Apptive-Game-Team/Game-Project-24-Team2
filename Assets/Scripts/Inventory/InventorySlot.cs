@@ -30,12 +30,15 @@ public class InventorySlot : MonoBehaviour,
     public Item Item => _item;
     public int Count => _count;
 
-    private void Start()
+    private void Awake()
     {
         _canvas = GetComponentInParent<Canvas>();
+    }
 
-        _icon.enabled = false;
-        _countText.text = "";
+    private void Start()
+    {
+        // 시작할 때 무조건 끄는 것이 아니라, 현재 슬롯 데이터에 맞게 UI를 갱신하도록 변경
+        UpdateUI();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
