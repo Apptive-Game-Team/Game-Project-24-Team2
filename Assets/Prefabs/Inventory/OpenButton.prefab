@@ -200,8 +200,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC5F4\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a5c5092d01110f345abe79c290b7fc38, type: 2}
-  m_sharedMaterial: {fileID: 96599460280847888, guid: a5c5092d01110f345abe79c290b7fc38, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 167aef0fa0e3e4712994590c7500a68e, type: 2}
+  m_sharedMaterial: {fileID: -6054343528631541325, guid: 167aef0fa0e3e4712994590c7500a68e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

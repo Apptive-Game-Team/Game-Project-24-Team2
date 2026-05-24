@@ -49,7 +49,6 @@ public class Pot : MonoBehaviour
     private BoxCollider2D _potCollider;
     private bool _isGrown = false;
     private int _whatspore;
-    private float _timer = 0f; //테스트용 타이머
 
     // 화분의 상태를 저장할 클래스와 정적(Static) 배열
     public class PotState
