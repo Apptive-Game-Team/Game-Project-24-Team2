@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Pot : MonoBehaviour
 { 
-    public static event Action OnMushroomReaped;
+    public static event Action<Item> OnMushroomReaped;
     public static event Action OnPotPlaced;
     public static event Action OnSporePlaced;
 
@@ -20,6 +20,7 @@ public class Pot : MonoBehaviour
 
     //버섯 관련
     [SerializeField] private GameObject[] _mushrooms;
+    [SerializeField] private Item[] _mushroomItems;
 
     //물 게이지 관련
     [SerializeField] private float _waterGauge = 0f; //현재 물 게이지
@@ -168,17 +169,6 @@ public class Pot : MonoBehaviour
         }
 
         UpdateWaterGaugeBar(); //게이지 시각화
-
-        //(테스트용) 0.5초마다 성장도 표시
-        _timer += Time.deltaTime;
-        if (_timer >= 0.5f)
-        {
-            if (IsSporePlaced)
-            {
-                Debug.Log($"성장도 : {_growth}");
-            }
-            _timer = 0f;
-        }
     }
 
     public void ShowGuide() //드래그 중 화분 반투명하게 표시
@@ -351,10 +341,33 @@ public class Pot : MonoBehaviour
 
     private void ReapMushroom(int whatSpore)
     {
-        OnMushroomReaped?.Invoke();
+        Item mushroomItem = GetMushroomItemBySpore(_whatspore);
+        
+        if (mushroomItem != null)
+        {
+            OnMushroomReaped?.Invoke(mushroomItem);
+        }
+        else
+        {
+            Debug.LogError($"버섯 아이템을 로드할 수 없습니다 (_whatspore={_whatspore})");
+        }
+        
         _isGrown = false;
         _mushrooms[whatSpore].SetActive(false);
         Debug.Log("OnMushroomReaped");
+
+    }
+
+    private Item GetMushroomItemBySpore(int sporeType)
+    {
+        return sporeType switch
+        {
+            0 => Resources.Load<Item>("Items/MushroomItems/PencilMushroomItem"),
+            1 => Resources.Load<Item>("Items/MushroomItems/TextbookMushroomItem"),
+            2 => Resources.Load<Item>("Items/MushroomItems/BlackboardMushroomItem"),
+            3 => Resources.Load<Item>("Items/MushroomItems/MealMushroomItem"),
+            _ => null
+        };
     }
 
     private void HandleDragStarted(Item item)

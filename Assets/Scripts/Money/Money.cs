@@ -26,11 +26,11 @@ public class Money : MonoBehaviour
         OnMoneyChanged?.Invoke(currentMoney);
     }
 
-    private void HandleMushroomReaped()
+    private void HandleMushroomReaped(Item mushroomItem)
     {
         currentMoney += 500f;
         OnMoneyChanged?.Invoke(currentMoney);
-        Debug.Log("HandleStudyCompleted");
+        Debug.Log("HandleMushroomReaped");
     }
 
     private void HandleStudyCompleted()

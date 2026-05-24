@@ -33,6 +33,9 @@ public class InventorySlot : MonoBehaviour,
     private void Start()
     {
         _canvas = GetComponentInParent<Canvas>();
+
+        _icon.enabled = false;
+        _countText.text = "";
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -56,7 +59,14 @@ public class InventorySlot : MonoBehaviour,
 
         rect.sizeDelta = new Vector2(80, 80);
 
-        _dragIcon.transform.position = eventData.position;
+        // 스크린 좌표를 Canvas 로컬 좌표로 변환
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _canvas.GetComponent<RectTransform>(),
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 localPoint);
+
+        rect.localPosition = localPoint;
 
         OnDragStarted?.Invoke(_item);
     }
@@ -69,7 +79,14 @@ public class InventorySlot : MonoBehaviour,
             return;
         }
 
-        _dragIcon.transform.position = eventData.position;
+        // 스크린 좌표를 Canvas 로컬 좌표로 변환
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _canvas.GetComponent<RectTransform>(),
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 localPoint);
+
+        _dragIcon.GetComponent<RectTransform>().localPosition = localPoint;
     }
 
     // 드래그 종료
