@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PencilMushroomItem
   _itemName: "\uC5F0\uD544 \uBC84\uC12F"
   _price: 0
-  _icon: {fileID: 0}
+  _icon: {fileID: -6338653117705020849, guid: f8a616ac4168ee94e8fadfcbdbbef8e2, type: 3}
   _shopOrder: -1

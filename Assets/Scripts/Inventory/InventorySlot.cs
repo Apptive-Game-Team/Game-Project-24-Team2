@@ -30,9 +30,15 @@ public class InventorySlot : MonoBehaviour,
     public Item Item => _item;
     public int Count => _count;
 
-    private void Start()
+    private void Awake()
     {
         _canvas = GetComponentInParent<Canvas>();
+    }
+
+    private void Start()
+    {
+        // 시작할 때 무조건 끄는 것이 아니라, 현재 슬롯 데이터에 맞게 UI를 갱신하도록 변경
+        UpdateUI();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -56,7 +62,14 @@ public class InventorySlot : MonoBehaviour,
 
         rect.sizeDelta = new Vector2(80, 80);
 
-        _dragIcon.transform.position = eventData.position;
+        // 스크린 좌표를 Canvas 로컬 좌표로 변환
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _canvas.GetComponent<RectTransform>(),
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 localPoint);
+
+        rect.localPosition = localPoint;
 
         OnDragStarted?.Invoke(_item);
     }
@@ -69,7 +82,14 @@ public class InventorySlot : MonoBehaviour,
             return;
         }
 
-        _dragIcon.transform.position = eventData.position;
+        // 스크린 좌표를 Canvas 로컬 좌표로 변환
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _canvas.GetComponent<RectTransform>(),
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector2 localPoint);
+
+        _dragIcon.GetComponent<RectTransform>().localPosition = localPoint;
     }
 
     // 드래그 종료
