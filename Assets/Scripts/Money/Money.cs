@@ -4,6 +4,7 @@ using System;
 public class Money : MonoBehaviour
 {
     public static event Action<float> OnMoneyChanged;
+    public static event Action<int> OnMoneyEarned;
     public static float currentMoney = 0f;
 
     private void OnEnable()
@@ -28,15 +29,19 @@ public class Money : MonoBehaviour
 
     private void HandleMushroomReaped(Item mushroomItem)
     {
-        currentMoney += 500f;
+        int earned = 500;
+        currentMoney += earned;
         OnMoneyChanged?.Invoke(currentMoney);
+        OnMoneyEarned?.Invoke(earned); 
         Debug.Log("HandleMushroomReaped");
     }
 
-    private void HandleStudyCompleted()
+    private void HandleStudyCompleted() 
     {
-        currentMoney += 50f;
+        int earnedMoney = 50;
+        currentMoney += earnedMoney;
         OnMoneyChanged?.Invoke(currentMoney);
+        OnMoneyEarned?.Invoke(earnedMoney);
         Debug.Log("HandleStudyCompleted");
     }
 }
