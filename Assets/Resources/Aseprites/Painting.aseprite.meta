@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fcf71a7274a9f534dbfff61ee46c8946
+guid: ffd5da5a37116934f9f001e635c7a28c
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: StudentTable
+  - name: Painting
     originalName: 
-    pivot: {x: 0.49999997, y: -0.08737864}
+    pivot: {x: 0.5, y: -0.44117647}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 122
-      height: 103
-    spriteID: 75e0f446ff148e248bf273e12671ca73
+      width: 104
+      height: 68
+    spriteID: d5adbd7045856b241938c839231af0d6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,25 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 819506215
+      value0: 267960826
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: StudentTable
+    name: Painting
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: StudentTable
+    - name: Painting
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 3
-        y: 9
-        width: 122
-        height: 103
-      spriteId: 75e0f446ff148e248bf273e12671ca73
+        x: 12
+        y: 30
+        width: 104
+        height: 68
+      spriteId: d5adbd7045856b241938c839231af0d6
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -182,4 +182,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 128}
-  previousTextureSize: {x: 256, y: 128}
+  previousTextureSize: {x: 128, y: 128}
