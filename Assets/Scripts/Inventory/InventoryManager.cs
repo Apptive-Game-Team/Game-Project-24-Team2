@@ -9,8 +9,8 @@ public class InventoryManager : MonoBehaviour
     private static readonly List<Item> _pendingPurchases = new List<Item>();
 
     [Header("Items")]
-    [SerializeField] private Item _textbookMushroom;
-    [SerializeField] private Item _blackboardMushroom;
+    [SerializeField] private Item _textbookSpore;
+    [SerializeField] private Item _blackboardSpore;
     [SerializeField] private Item _mealSpore;
 
     [Header("Sound")]
@@ -18,10 +18,90 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private AudioClip _successClip;
 
     [Header("Combination")]
-    [SerializeField] private List<Item> _draggedList;
-    [SerializeField] private List<Item> _targetList;
+    [SerializeField] private List<CombinationRecipe> _combinationRecipes = new List<CombinationRecipe>();
 
-    private Dictionary<Item, Item> _itemPair;
+    private Dictionary<ItemPair, Item> _combinationDictionary;
+
+    [System.Serializable]
+    private struct CombinationRecipe
+    {
+        public Item ItemA;
+        public Item ItemB;
+        public Item Result;
+    }
+
+    private struct ItemPair : System.IEquatable<ItemPair>
+    {
+        public Item ItemA;
+        public Item ItemB;
+
+        public ItemPair(Item itemA, Item itemB)
+        {
+            if (CompareItems(itemA, itemB) <= 0)
+            {
+                ItemA = itemA;
+                ItemB = itemB;
+            }
+            else
+            {
+                ItemA = itemB;
+                ItemB = itemA;
+            }
+        }
+
+        public bool Equals(ItemPair other)
+        {
+            return AreSameItem(ItemA, other.ItemA) && AreSameItem(ItemB, other.ItemB);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ItemPair other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashA = ItemA != null ? (ItemA.ItemName.GetHashCode() * 397) ^ ItemA.ShopOrder : 0;
+            int hashB = ItemB != null ? (ItemB.ItemName.GetHashCode() * 397) ^ ItemB.ShopOrder : 0;
+            return hashA ^ (hashB << 1);
+        }
+
+        private static int CompareItems(Item a, Item b)
+        {
+            if (ReferenceEquals(a, b))
+            {
+                return 0;
+            }
+
+            if (a == null)
+            {
+                return -1;
+            }
+
+            if (b == null)
+            {
+                return 1;
+            }
+
+            int nameComparison = string.Compare(a.ItemName, b.ItemName, System.StringComparison.Ordinal);
+            if (nameComparison != 0)
+            {
+                return nameComparison;
+            }
+
+            return a.ShopOrder.CompareTo(b.ShopOrder);
+        }
+
+        private static bool AreSameItem(Item a, Item b)
+        {
+            if (a == null || b == null)
+            {
+                return false;
+            }
+
+            return a == b || (a.ItemName == b.ItemName && a.ShopOrder == b.ShopOrder);
+        }
+    }
 
     [Header("Effects")]
     [SerializeField] private GameObject _combineEffectPrefab;
@@ -120,27 +200,28 @@ public class InventoryManager : MonoBehaviour
 
     private void InitializeCombinationPairs()
     {
-        _itemPair = new Dictionary<Item, Item>();
-        int pairCount = Mathf.Min(_draggedList.Count, _targetList.Count);
+        _combinationDictionary = new Dictionary<ItemPair, Item>();
 
-        for (int i = 0; i < pairCount; i++)
+        foreach (CombinationRecipe recipe in _combinationRecipes)
         {
-            Item dragged = _draggedList[i];
-            Item target = _targetList[i];
-
-            if (dragged == null || target == null)
+            if (recipe.ItemA == null || recipe.ItemB == null || recipe.Result == null)
             {
                 continue;
             }
 
-            if (!_itemPair.ContainsKey(dragged))
+            ItemPair pair = new ItemPair(recipe.ItemA, recipe.ItemB);
+            if (!_combinationDictionary.ContainsKey(pair))
             {
-                _itemPair.Add(dragged, target);
+                _combinationDictionary.Add(pair, recipe.Result);
             }
+        }
 
-            if (!_itemPair.ContainsKey(target))
+        if (_textbookSpore != null && _blackboardSpore != null && _mealSpore != null)
+        {
+            ItemPair textbookBlackboardPair = new ItemPair(_textbookSpore, _blackboardSpore);
+            if (!_combinationDictionary.ContainsKey(textbookBlackboardPair))
             {
-                _itemPair.Add(target, dragged);
+                _combinationDictionary.Add(textbookBlackboardPair, _mealSpore);
             }
         }
     }
@@ -226,13 +307,13 @@ public class InventoryManager : MonoBehaviour
     // 아이템 조합 시도
     public void TryCombine(Item draggedItem, Item targetItem)
     {
-        if (draggedItem == null || targetItem == null || _itemPair == null)
+        if (draggedItem == null || targetItem == null || _combinationDictionary == null)
         {
             return;
         }
 
-        if (!_itemPair.TryGetValue(draggedItem, out Item expectedTarget) ||
-            !AreSameItem(expectedTarget, targetItem))
+        ItemPair pair = new ItemPair(draggedItem, targetItem);
+        if (!_combinationDictionary.TryGetValue(pair, out Item resultItem))
         {
             return;
         }
@@ -262,7 +343,7 @@ public class InventoryManager : MonoBehaviour
 
         RemoveItem(draggedItem, 1);
         RemoveItem(targetItem, 1);
-        PutItem(_mealSpore);
+        PutItem(resultItem);
 
         if (_audioSource != null && _successClip != null)
         {
