@@ -29,12 +29,12 @@ public class ClassroomStealthManager : MonoBehaviour
     private void OnEnable()
     {
         // OnTeacherLookedBack 이벤트를 수신
-        TeacherFSM.OnTeacherLookedBack += CheckDamageCondition;
+        TeacherManager.OnTeacherLookedBack += CheckDamageCondition;
     }
 
     private void OnDisable()
     {
-        TeacherFSM.OnTeacherLookedBack -= CheckDamageCondition;
+        TeacherManager.OnTeacherLookedBack -= CheckDamageCondition;
     }
 
     // 데미지 조건을 만족하는지 체크하고 StudentDamageHandler를 실행시키는 메서드
