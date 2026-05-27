@@ -22,8 +22,8 @@ public class TeacherManager : MonoBehaviour
     public float minWritingTime = 5f;
     public float maxWritingTime = 10f;
     public float prepareTime = 1f;
-    public float minWatchingTime = 1f;
-    public float maxWatchingTime = 3f;
+    public float minWatchingTime = 5f;
+    public float maxWatchingTime = 10f;
 
     private float timer = 0f;
     private float stateDuration = 0f;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClassroomStealthManager : MonoBehaviour
 {
@@ -30,11 +31,26 @@ public class ClassroomStealthManager : MonoBehaviour
     {
         // OnTeacherLookedBack 이벤트를 수신
         TeacherManager.OnTeacherLookedBack += CheckDamageCondition;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         TeacherManager.OnTeacherLookedBack -= CheckDamageCondition;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 씬 이름에 따라 플레이어 위치 상태 자동 변경
+        if (scene.name == "MainScene")
+        {
+            ChangeLocation(PlayerLocation.MainScene);
+        }
+        else if (scene.name == "GrowingTestScene")
+        {
+            ChangeLocation(PlayerLocation.DrawerScene);
+        }
     }
 
     // 데미지 조건을 만족하는지 체크하고 StudentDamageHandler를 실행시키는 메서드
@@ -58,7 +74,7 @@ public class ClassroomStealthManager : MonoBehaviour
         }
     }
 
-    // 플레이어가 이동할 때 위치를 바꿔주는 메소드 (외부 호출용)
+    // 플레이어가 이동할 때 위치를 바꿔주는 메소드 
     public void ChangeLocation(PlayerLocation newLocation)
     {
         currentProperty = newLocation;

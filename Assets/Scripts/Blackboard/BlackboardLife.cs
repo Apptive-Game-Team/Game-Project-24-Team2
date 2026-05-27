@@ -7,7 +7,14 @@ public class BlackboardLife : MonoBehaviour
     [Header("Life Counter Settings")]
     [SerializeField] private GameObject[] jungSteps; // Jung1 ~ Jung5 배열
     
-    private int currentDamage = 0; // 현재 감점 횟수 (0~5)
+    private static int currentDamage = 0; // 씬을 넘나들며 공유할 정적 데미지 변수
+
+    // 에디터에서 플레이 모드를 껐다 켤 때 데미지가 남아있는 것을 방지 (초기화)
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStaticVariables()
+    {
+        currentDamage = 0;
+    }
 
     void Awake()
     {
@@ -19,10 +26,10 @@ public class BlackboardLife : MonoBehaviour
         }
         Instance = this;
 
-        // 게임 시작 시 모든 획을 보이지 않게 초기화
-        foreach (GameObject step in jungSteps)
+        // 씬이 로드될 때(씬 전환 시) 현재 누적된 데미지 개수만큼 획(UI)을 활성화하여 동기화
+        for (int i = 0; i < jungSteps.Length; i++)
         {
-            if (step != null) step.SetActive(false);
+            if (jungSteps[i] != null) jungSteps[i].SetActive(i < currentDamage);
         }
     }
 
