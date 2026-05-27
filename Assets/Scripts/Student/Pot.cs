@@ -44,13 +44,15 @@ public class Pot : MonoBehaviour
     [HideInInspector] public bool IsPotPlaced = false;
     
     [Header("Sound")]
-    [SerializeField] private AudioSource _potting;
-    [SerializeField] private AudioSource _watering;
-    [SerializeField] private AudioSource _reaping;
+    [SerializeField] private AudioSource _pottingSound;
+    [SerializeField] private AudioSource _wateringSound;
+    [SerializeField] private AudioSource _reapingSound;
+    [SerializeField] private AudioSource _growingSound;
 
     [Header("Particle")]
     [SerializeField] private ParticleSystem _pottingEffect;
     [SerializeField] private ParticleSystem _reapingEffect;
+    [SerializeField] private ParticleSystem _growingEffect;
 
     private SpriteRenderer _sprite;
     private BoxCollider2D _potCollider;
@@ -162,7 +164,8 @@ public class Pot : MonoBehaviour
             }
             if (_isGrown && IsClickDownPot()) //버섯이 다 자란 화분을 클릭한 시점에 버섯 수확
             {
-                _reaping.Play();
+                _reapingSound.Play();
+                Debug.Log(_reapingEffect.name);
                 _reapingEffect.Play();
                 ReapMushroom(_whatspore);
                 _growth = _minGrowth;
@@ -228,17 +231,20 @@ public class Pot : MonoBehaviour
 
     private void InitPotAudio()
     {
-        _watering.loop = true;
+        _wateringSound.loop = true;
 
-        _potting.loop = false;
+        _pottingSound.loop = false;
 
-        _reaping.loop = false;
+        _reapingSound.loop = false;
+
+        _growingSound.loop = false;
     }
 
     private void InitParticle()
     {
         _pottingEffect.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         _reapingEffect.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        _growingEffect.transform.position = new Vector3(transform.position.x, transform.position.y+0.5f, transform.position.z);
     }
 
     private void InitSprite()
@@ -291,9 +297,9 @@ public class Pot : MonoBehaviour
             }
             _waterGauge += _waterGaugeSpeed * Time.deltaTime;
             _waterGauge = Mathf.Min(_waterGauge, _waterMaxGauge);
-            if (!_watering.isPlaying)
+            if (!_wateringSound.isPlaying)
             {
-                _watering.Play();
+                _wateringSound.Play();
             }
         }
     }
@@ -315,6 +321,8 @@ public class Pot : MonoBehaviour
         if (_growth >= _maxGrowth) //완전 성장 아기버섯 -> 버섯
         {
             SecondEvolution(_whatspore);
+            _growingEffect.Play();
+            _growingSound.Play();
         }
     }
 
@@ -343,7 +351,7 @@ public class Pot : MonoBehaviour
                 _waterGauge -= _waterGaugeSpeed * Time.deltaTime;
                 _waterGauge = Mathf.Max(_waterGauge, _waterMinGauge);
             }
-        _watering.Stop();
+        _wateringSound.Stop();
     }
 
     private void AppearWaterGauge()
@@ -450,7 +458,7 @@ public class Pot : MonoBehaviour
             {
                 if (IsPotPlaced && !IsSporePlaced)
                 {
-                    _potting.Play();
+                    _pottingSound.Play();
                     _pottingEffect.Play();
                     ShowSpore(item);
                     IsSporePlaced = true;

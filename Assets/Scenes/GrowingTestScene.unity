@@ -395,6 +395,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7181979146900564414, guid: 716aa8040ad7e2449bb30a438fb1e2ae, type: 3}
   m_PrefabInstance: {fileID: 3906676012883578912}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &186147923 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &234767194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1033,6 +1038,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3212656780028856476, guid: 2c88941bfec738340abcb6ed29b9f7f8, type: 3}
   m_PrefabInstance: {fileID: 517032604}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &538204899 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 9001682633956299791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &539650071 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1146598363393714231, guid: 2c88941bfec738340abcb6ed29b9f7f8, type: 3}
@@ -1426,9 +1436,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 715141309}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _growingSound
+      value: 
+      objectReference: {fileID: 715141311}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _pottingSound
+      value: 
+      objectReference: {fileID: 715141310}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _reapingSound
+      value: 
+      objectReference: {fileID: 715141308}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _growingEffect
+      value: 
+      objectReference: {fileID: 1864496904}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _reapingEffect
       value: 
-      objectReference: {fileID: 1914793460}
+      objectReference: {fileID: 766121778}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _wateringSound
+      value: 
+      objectReference: {fileID: 715141309}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _spores.Array.size
       value: 4
@@ -1489,13 +1519,17 @@ PrefabInstance:
       propertyPath: '_babyMushrooms.Array.data[3]'
       value: 
       objectReference: {fileID: 2009856056}
+    - target: {fileID: 4960268724111414477, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: m_Name
+      value: GrowingEffect1
+      objectReference: {fileID: 0}
     - target: {fileID: 5014103975335466580, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_Name
       value: Pot (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5598013671458842136, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_Name
-      value: PottingEffect
+      value: PottingEffect1
       objectReference: {fileID: 0}
     - target: {fileID: 8961360030126748403, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1537,6 +1571,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8989901432042680703, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: m_Name
+      value: ReapingEffect1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1555,6 +1593,11 @@ AudioSource:
 --- !u!82 &715141310 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2882373877356786621, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &715141311 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8549129292837174241, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 715141307}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &717745228
@@ -1668,6 +1711,11 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8961360030126748403, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &766121778 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2415670747516179705, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &769053740
 PrefabInstance:
@@ -2008,6 +2056,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2658953663435809368, guid: 6f03a0ee7a0c70940a1bfb0ae929e910, type: 3}
   m_PrefabInstance: {fileID: 908396248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &912016992 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2415670747516179705, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &973840036
 PrefabInstance:
@@ -2361,9 +2414,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1166918284}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _growingSound
+      value: 
+      objectReference: {fileID: 1166918289}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _pottingSound
+      value: 
+      objectReference: {fileID: 1166918285}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _reapingSound
+      value: 
+      objectReference: {fileID: 1166918283}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _growingEffect
+      value: 
+      objectReference: {fileID: 1537924402}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _reapingEffect
       value: 
-      objectReference: {fileID: 1914793460}
+      objectReference: {fileID: 912016992}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _wateringSound
+      value: 
+      objectReference: {fileID: 1166918284}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _spores.Array.size
       value: 4
@@ -2428,13 +2501,17 @@ PrefabInstance:
       propertyPath: '_babyMushrooms.Array.data[3]'
       value: 
       objectReference: {fileID: 1163854461}
+    - target: {fileID: 4960268724111414477, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: m_Name
+      value: GrowingEffect3
+      objectReference: {fileID: 0}
     - target: {fileID: 5014103975335466580, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_Name
       value: Pot (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5598013671458842136, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_Name
-      value: PottingEffect
+      value: PottingEffect3
       objectReference: {fileID: 0}
     - target: {fileID: 8961360030126748403, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2476,6 +2553,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8989901432042680703, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: m_Name
+      value: ReapingEffect3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2494,6 +2575,11 @@ AudioSource:
 --- !u!82 &1166918285 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2882373877356786621, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1166918289 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8549129292837174241, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 1166918282}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1175460994 stripped
@@ -3265,6 +3351,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb1382d96035273428c39219b79c8b64, type: 3}
+--- !u!198 &1537924402 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1569121732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3294,9 +3385,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1569121734}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _growingSound
+      value: 
+      objectReference: {fileID: 1569121739}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _pottingSound
+      value: 
+      objectReference: {fileID: 1569121735}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _reapingSound
+      value: 
+      objectReference: {fileID: 1569121733}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _growingEffect
+      value: 
+      objectReference: {fileID: 186147923}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _reapingEffect
       value: 
-      objectReference: {fileID: 1914793460}
+      objectReference: {fileID: 1695685674}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _wateringSound
+      value: 
+      objectReference: {fileID: 1569121734}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _spores.Array.size
       value: 4
@@ -3373,13 +3484,17 @@ PrefabInstance:
       propertyPath: '_babyMushrooms.Array.data[3]'
       value: 
       objectReference: {fileID: 323597753}
+    - target: {fileID: 4960268724111414477, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: m_Name
+      value: GrowingEffect2
+      objectReference: {fileID: 0}
     - target: {fileID: 5014103975335466580, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_Name
       value: Pot (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5598013671458842136, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_Name
-      value: PottingEffect
+      value: PottingEffect2
       objectReference: {fileID: 0}
     - target: {fileID: 8961360030126748403, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3421,6 +3536,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8989901432042680703, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: m_Name
+      value: ReapingEffect2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3439,6 +3558,11 @@ AudioSource:
 --- !u!82 &1569121735 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2882373877356786621, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1569121739 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8549129292837174241, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 1569121732}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1580294574
@@ -3613,6 +3737,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3212656780028856476, guid: 2c88941bfec738340abcb6ed29b9f7f8, type: 3}
   m_PrefabInstance: {fileID: 1655061047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1695685674 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2415670747516179705, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1700703512 stripped
 GameObject:
@@ -4064,6 +4193,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3212656780028856476, guid: 2c88941bfec738340abcb6ed29b9f7f8, type: 3}
   m_PrefabInstance: {fileID: 1860345750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1864496904 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1864537464
 PrefabInstance:
@@ -5385,14 +5519,6 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2882373877356786621, guid: d3e081844020d32449491a2bffb127b0, type: 3}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3258832950618625591, guid: d3e081844020d32449491a2bffb127b0, type: 3}
-      propertyPath: m_Pitch
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _Reaping
       value: 
@@ -5414,9 +5540,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9001682633956299793}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _growingSound
+      value: 
+      objectReference: {fileID: 9001682633956299795}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _pottingSound
+      value: 
+      objectReference: {fileID: 9001682633956299794}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _reapingSound
+      value: 
+      objectReference: {fileID: 9001682633956299792}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _growingEffect
+      value: 
+      objectReference: {fileID: 538204899}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _reapingEffect
       value: 
       objectReference: {fileID: 1914793460}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _wateringSound
+      value: 
+      objectReference: {fileID: 9001682633956299793}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _spores.Array.size
       value: 4
@@ -5481,6 +5627,86 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].time
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].cycleCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].probability
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].repeatInterval
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.scalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minScalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.maxCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.maxCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.maxCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.maxCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.maxCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.maxCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040422511459041422, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8961360030126748403, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -574.54376
@@ -5539,6 +5765,11 @@ AudioSource:
 --- !u!82 &9001682633956299794 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2882373877356786621, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 9001682633956299791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &9001682633956299795 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8549129292837174241, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 9001682633956299791}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
