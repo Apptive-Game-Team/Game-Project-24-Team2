@@ -961,6 +961,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5768375381990738665, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768375381990738665, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768375381990738665, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768375381990738665, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6878406617849209012, guid: 2755aeff8d3eef446ae8fe8eab68f021, type: 3}
       propertyPath: m_Sprite
       value: 

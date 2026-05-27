@@ -155,7 +155,7 @@ public class Book : MonoBehaviour
 
         if (_bookGaugeTransform != null) //게이지 시각화
         {
-            _bookGaugeTransform.localScale = new Vector3(2 * _bookGauge / _bookMaxGauge, _bookGaugeTransform.localScale.y, _bookGaugeTransform.localScale.z);
+            _bookGaugeTransform.localScale = new Vector3(7.1f * _bookGauge / _bookMaxGauge, _bookGaugeTransform.localScale.y, _bookGaugeTransform.localScale.z);
         }
     }
 

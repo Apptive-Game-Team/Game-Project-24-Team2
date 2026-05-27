@@ -374,7 +374,7 @@ public class Pot : MonoBehaviour
 
             if (_waterGaugeTransform != null) //게이지 시각화
             {
-                _waterGaugeTransform.localScale = new Vector3(2 * _waterGauge / _waterMaxGauge, _waterGaugeTransform.localScale.y, _waterGaugeTransform.localScale.z);
+                _waterGaugeTransform.localScale = new Vector3(7.1f * _waterGauge / _waterMaxGauge, _waterGaugeTransform.localScale.y, _waterGaugeTransform.localScale.z);
             }
         }
         else
