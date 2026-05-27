@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 918135854279009508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.21, y: 0.6, z: 0}
-  m_LocalScale: {x: 3, y: 0.5, z: 1}
+  m_LocalPosition: {x: 2.46, y: 0.6, z: 0}
+  m_LocalScale: {x: 9.640001, y: 8.81, z: 3.2133336}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2076769241821422547}
@@ -81,10 +81,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6377357, g: 0.6377357, b: 0.6377357, a: 1}
+  m_Sprite: {fileID: 6836527058332473632, guid: 6b02d84c75fc46949b071bf876abda2b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -178,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 4907916054058904279}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -0.12, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -231,10 +231,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_MaskInteraction: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.2889355, g: 0.33302236, b: 0.9169811, a: 1}
+  m_Sprite: {fileID: -8555585416324626108, guid: 532e3829b29810640b31d0bb0d3697bd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -363,6 +363,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _mushrooms: []
+  _mushroomItems: []
   _babyMushrooms: []
   _waterGauge: 0
   _waterMinGauge: 0
