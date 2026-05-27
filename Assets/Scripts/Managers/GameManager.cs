@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // 어디서나 GameManager.Instance로 접근할 수 있게 싱글톤 세팅
+    // 어디서나 GameManager.Instance로 접근할 수 있게 싱글톤으로 구현
     public static GameManager Instance { get; private set; }
 
     void Awake()
@@ -19,5 +19,9 @@ public class GameManager : MonoBehaviour
     public void OnGameOver()
     {
         Debug.LogWarning("[GameManager] 게임 오버");
+        
+        // 게임 오버 시 선생님 패턴 정지
+        if (TeacherManager.Instance != null)
+            TeacherManager.Instance.StopTeacher();
     }
 }
