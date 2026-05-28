@@ -6,11 +6,33 @@ public class InventoryUIController : MonoBehaviour
     [SerializeField] private GameObject _inventoryPanel;
     [SerializeField] private GameObject _openButton;
 
+    [Header("Sound")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _openSound;
+    [SerializeField] private AudioClip _closeSound;
+
+    private void Awake()
+    {
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+            {
+                _audioSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
+    }
+
     // 인벤토리 열기: 닫혀있던 동안 추가된 아이템들을 UI에 모두 반영
     public void OpenInventory()
     {
         _inventoryPanel.SetActive(true);
         _openButton.SetActive(false);
+
+        if (_audioSource != null && _openSound != null)
+        {
+            _audioSource.PlayOneShot(_openSound);
+        }
 
         if (InventoryManager.Instance != null)
         {
@@ -23,6 +45,11 @@ public class InventoryUIController : MonoBehaviour
     {
         _inventoryPanel.SetActive(false);
         _openButton.SetActive(true);
+
+        if (_audioSource != null && _closeSound != null)
+        {
+            _audioSource.PlayOneShot(_closeSound);
+        }
     }
 
     private void Update()
@@ -31,15 +58,14 @@ public class InventoryUIController : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             bool isActive = _inventoryPanel.activeSelf;
-            bool willOpen = !isActive;
 
-            _inventoryPanel.SetActive(willOpen);
-            _openButton.SetActive(isActive);
-
-            // 열 때 닫혀있던 동안 추가된 아이템들도 반영
-            if (willOpen && InventoryManager.Instance != null)
+            if (!isActive)
             {
-                InventoryManager.Instance.RefreshAllSlots();
+                OpenInventory();
+            }
+            else
+            {
+                CloseInventory();
             }
         }
     }

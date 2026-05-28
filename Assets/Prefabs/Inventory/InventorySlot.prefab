@@ -304,3 +304,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
   _icon: {fileID: 322010371229452358}
   _countText: {fileID: 7436927770815990915}
+  _audioSource: {fileID: 0}
+  _dragStartSound: {fileID: 8300000, guid: 897abca1c097542488496156b0f07a71, type: 3}
+  _dropSound: {fileID: 0}

@@ -3758,6 +3758,14 @@ PrefabInstance:
       value: InventoryUIController
       objectReference: {fileID: 0}
     - target: {fileID: 6410816180082282676, guid: dc0ebe2f7d0043a46bb0d4ffa4747cb8, type: 3}
+      propertyPath: _openSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a8aa607feee49d46a5bee2a9ac674a7, type: 3}
+    - target: {fileID: 6410816180082282676, guid: dc0ebe2f7d0043a46bb0d4ffa4747cb8, type: 3}
+      propertyPath: _closeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ac728153bcda1734dbaf6b00b3924629, type: 3}
+    - target: {fileID: 6410816180082282676, guid: dc0ebe2f7d0043a46bb0d4ffa4747cb8, type: 3}
       propertyPath: _openButton
       value: 
       objectReference: {fileID: 6967059315651481969}
