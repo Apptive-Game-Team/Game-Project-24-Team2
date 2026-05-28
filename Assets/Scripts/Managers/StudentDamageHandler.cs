@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class StudentDamageHandler : MonoBehaviour
 {
+    public static StudentDamageHandler Instance { get; private set; }
+
     [Header("Sound Settings")]
     private AudioSource audioSource;
     [SerializeField] private AudioClip damageSound;
 
-    // 💡 피격 시 발생할 이벤트 (DamageEffect 등에서 구독하여 사용)
+    // 피격 시 발생할 이벤트 (DamageEffect 등에서 구독하여 사용)
     public static event Action OnPlayerDamaged;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -20,6 +22,13 @@ public class StudentDamageHandler : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class Drawer : MonoBehaviour
 {
     private BoxCollider2D drawerCollider;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     private void Start()
     {
         drawerCollider = GetComponent<BoxCollider2D>();
@@ -16,6 +16,13 @@ public class Drawer : MonoBehaviour
     {
         if (IsClickDrawer())
         {
+            // 선생님이 감시 중일 때 서랍을 열려고 시도하면 적발
+            if (TeacherManager.Instance != null && TeacherManager.Instance.IsWatching())
+            {
+                Debug.LogWarning("선생님에게 서랍 조작(딴짓)을 들켰습니다!");
+                if (StudentDamageHandler.Instance != null) StudentDamageHandler.Instance.HandleDamage();
+            }
+
             LoadGrowingTestScene();
         }
     }
@@ -42,7 +49,7 @@ public class Drawer : MonoBehaviour
         return false;
     }
 
-    private void LoadGrowingTestScene() //GrowingTestScene을 Hierarchy에 올리고 Unload한 후 실행
+    private void LoadGrowingTestScene()
     {
         SceneManager.LoadScene("GrowingTestScene");
     }
