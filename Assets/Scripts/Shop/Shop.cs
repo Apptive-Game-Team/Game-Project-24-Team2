@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(ShopManager))]
 [RequireComponent(typeof(BoxCollider))]
@@ -16,6 +17,12 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
+        // 인벤토리 등 UI 창 위에 마우스가 있을 때는 상점 클릭을 무시하여 관통을 방지합니다.
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
         // 상점 클릭
         if (Mouse.current.leftButton.wasPressedThisFrame)
             HandleShopClick();
