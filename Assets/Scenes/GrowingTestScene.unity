@@ -4525,11 +4525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7221357925302469253, guid: e9e9874bd1cabc74891d332753339bac, type: 3}
       propertyPath: spawnOffset.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7221357925302469253, guid: e9e9874bd1cabc74891d332753339bac, type: 3}
       propertyPath: spawnOffset.y
-      value: -5
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 7221357925302469253, guid: e9e9874bd1cabc74891d332753339bac, type: 3}
       propertyPath: targetTransform

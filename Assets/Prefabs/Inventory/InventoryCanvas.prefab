@@ -4106,7 +4106,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 622942466957621071, guid: ffb010b25f74f674fb4a1eb34cab3bfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3167764586231880909}
   m_SourcePrefab: {fileID: 100100000, guid: ffb010b25f74f674fb4a1eb34cab3bfb, type: 3}
 --- !u!224 &1058111832958660911 stripped
 RectTransform:
@@ -4118,6 +4121,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 622942466957621071, guid: ffb010b25f74f674fb4a1eb34cab3bfb, type: 3}
   m_PrefabInstance: {fileID: 7497039100910249534}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3167764586231880909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6967059315651481969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7a4cadeeedf804ea89e3fcf5ba6c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryIconHover
+  _iconImage: {fileID: 0}
+  _hoverSprite: {fileID: 3095531908659479409, guid: c2e5e3caa5d69c74a86e133d2a2d505d, type: 3}
 --- !u!1001 &7515698916816316802
 PrefabInstance:
   m_ObjectHideFlags: 0
