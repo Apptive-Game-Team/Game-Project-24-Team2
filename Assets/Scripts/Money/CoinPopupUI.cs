@@ -16,8 +16,17 @@ public class CoinPopupUI : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.2f;
     [SerializeField] private float moveSpeed = 100f;
 
+    [Header("Positioning")]
+    [Tooltip("팝업이 나타날 기준 위치(예: MoneyHUD의 Transform)입니다. 비워두면 원래 위치에서 나타납니다.")]
+    [SerializeField] private Transform targetTransform;
+    [SerializeField] private Vector3 spawnOffset = new Vector3(-50f, -50f, 0f);
+
     private Coroutine disableCoroutine;
     private Vector3 initialPosition;
+
+    [Header("Sound")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip popupSound;
 
     private void Awake()
     {
@@ -25,6 +34,15 @@ public class CoinPopupUI : MonoBehaviour
         {
             popupCanvasGroup = popupObject.GetComponent<CanvasGroup>();
             initialPosition = popupObject.transform.localPosition;
+        }
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
         }
     }
 
@@ -54,6 +72,11 @@ public class CoinPopupUI : MonoBehaviour
     {
         if (amount <= 0) return;
 
+        if (audioSource != null && popupSound != null)
+        {
+            audioSource.PlayOneShot(popupSound);
+        }
+
         amountText.text = $"+{amount}";
 
         if (disableCoroutine != null)
@@ -62,7 +85,17 @@ public class CoinPopupUI : MonoBehaviour
         }
 
         if (popupCanvasGroup != null) popupCanvasGroup.alpha = 1f;
-        popupObject.transform.localPosition = initialPosition;
+        
+        if (targetTransform != null)
+        {
+            // 기준점이 등록되어 있으면 해당 월드 위치로 이동 후 로컬 오프셋 적용
+            popupObject.transform.position = targetTransform.position;
+            popupObject.transform.localPosition += spawnOffset;
+        }
+        else
+        {
+            popupObject.transform.localPosition = initialPosition;
+        }
 
         popupObject.SetActive(true);
         disableCoroutine = StartCoroutine(PopupSequence());
