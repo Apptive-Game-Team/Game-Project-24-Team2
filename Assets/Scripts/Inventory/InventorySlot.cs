@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InventorySlot : MonoBehaviour,
     IBeginDragHandler,
@@ -53,6 +54,32 @@ public class InventorySlot : MonoBehaviour,
     {
         // 시작할 때 무조건 끄는 것이 아니라, 현재 슬롯 데이터에 맞게 UI를 갱신하도록 변경
         UpdateUI();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnSceneChanged;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnSceneChanged;
+        CancelDrag();
+    }
+
+    private void OnSceneChanged(Scene current, Scene next)
+    {
+        CancelDrag();
+    }
+
+    private void CancelDrag()
+    {
+        if (_dragIcon != null)
+        {
+            Destroy(_dragIcon);
+            _dragIcon = null;
+            OnDragCanceled?.Invoke();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -117,6 +144,7 @@ public class InventorySlot : MonoBehaviour,
         if (_dragIcon != null)
         {
             Destroy(_dragIcon);
+            _dragIcon = null;
         }
 
         // 드래그 종료 시 월드에 이벤트 방송

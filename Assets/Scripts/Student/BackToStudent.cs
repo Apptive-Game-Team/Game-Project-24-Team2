@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class BackToStudent : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class BackToStudent : MonoBehaviour
 
     bool IsClickBack()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return false;
+        }
+
         if (Mouse.current.leftButton.isPressed)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
