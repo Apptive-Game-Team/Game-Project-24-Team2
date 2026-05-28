@@ -273,23 +273,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1602912394949039207, guid: 9e7c0584dc98fa0439053240725088b0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.28
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1602912394949039207, guid: 9e7c0584dc98fa0439053240725088b0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.61
+      value: 3.3018293
       objectReference: {fileID: 0}
     - target: {fileID: 1602912394949039207, guid: 9e7c0584dc98fa0439053240725088b0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 7.969872
+      value: 7.2895174
       objectReference: {fileID: 0}
     - target: {fileID: 1602912394949039207, guid: 9e7c0584dc98fa0439053240725088b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.83
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 1602912394949039207, guid: 9e7c0584dc98fa0439053240725088b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.31
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1602912394949039207, guid: 9e7c0584dc98fa0439053240725088b0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5149417211236849643, guid: 9e7c0584dc98fa0439053240725088b0, type: 3}
       propertyPath: m_SortingOrder
