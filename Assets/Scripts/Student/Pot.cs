@@ -118,7 +118,15 @@ public class Pot : MonoBehaviour
 
             if (IsSporePlaced && !_isGrown)
             {
-                _spores[_whatspore].SetActive(true);
+                if (_growth > 0) // 성장도가 0보다 크면 아기 버섯 단계 복구
+                {
+                    FirstEvolution(_whatspore);
+                    ManageTransform(_whatspore);
+                }
+                else // 이제 막 포자를 심은 상태면 포자 복구
+                {
+                    _spores[_whatspore].SetActive(true);
+                }
             }
             if (_isGrown)
             {

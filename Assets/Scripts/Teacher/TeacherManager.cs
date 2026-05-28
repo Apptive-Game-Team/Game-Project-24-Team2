@@ -29,7 +29,7 @@ public class TeacherManager : MonoBehaviour
     private float stateDuration = 0f;
     private bool isGameActive = false; // 타이머 작동 여부
 
-    // 💡 유니티 엔진이 시작될 때 매니저 오브젝트를 자동으로 생성하여 유지시킵니다.
+    // 유니티 엔진이 시작될 때 매니저 오브젝트를 자동으로 생성하여 유지시킵니다.
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Initialize()
     {

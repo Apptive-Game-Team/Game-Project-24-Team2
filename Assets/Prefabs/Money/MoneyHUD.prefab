@@ -222,8 +222,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279835954
+  m_fontColor: {r: 0.19496846, g: 0.11191296, b: 0.09748421, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -319,10 +319,10 @@ RectTransform:
   - {fileID: 4634776687740073809}
   m_Father: {fileID: 6930801424555183542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -623.9221, y: 457.30652}
-  m_SizeDelta: {x: -1247.8442, y: -914.613}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -623.92, y: 457.31}
+  m_SizeDelta: {x: 672.15576, y: 165.38702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3061323312775372348
 CanvasRenderer:

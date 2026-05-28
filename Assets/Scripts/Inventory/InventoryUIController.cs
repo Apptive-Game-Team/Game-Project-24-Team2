@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class InventoryUIController : MonoBehaviour
 {
+    public static InventoryUIController Instance { get; private set; }
+
     [SerializeField] private GameObject _inventoryPanel;
     [SerializeField] private GameObject _openButton;
 
@@ -13,6 +15,14 @@ public class InventoryUIController : MonoBehaviour
 
     private void Awake()
     {
+        // 씬을 이동할 때 캔버스가 중복으로 겹쳐서 버튼이 두 개씩 뜨는 현상을 방지합니다.
+        if (Instance != null && Instance != this)
+        {
+            Destroy(transform.root.gameObject);
+            return;
+        }
+        Instance = this;
+
         if (_audioSource == null)
         {
             _audioSource = GetComponent<AudioSource>();
