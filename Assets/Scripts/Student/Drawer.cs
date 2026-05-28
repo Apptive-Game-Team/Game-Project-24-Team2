@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class Drawer : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class Drawer : MonoBehaviour
 
     private bool IsClickDrawer()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return false;
+        }
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());

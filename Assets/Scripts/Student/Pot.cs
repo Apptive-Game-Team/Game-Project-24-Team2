@@ -259,6 +259,11 @@ public class Pot : MonoBehaviour
 
     private bool IsClickPot() //클릭 유지중인지 확인
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return false;
+        }
+
         if (Mouse.current.leftButton.isPressed)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -274,6 +279,11 @@ public class Pot : MonoBehaviour
 
     private bool IsClickDownPot() //클릭 누른 시점만 확인
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return false;
+        }
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());

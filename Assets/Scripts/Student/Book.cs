@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.EventSystems;
 
 public class Book : MonoBehaviour
 {
@@ -90,6 +91,11 @@ public class Book : MonoBehaviour
 
     bool IsClickBook()
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return false;
+        }
+
         if (Mouse.current.leftButton.isPressed)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
