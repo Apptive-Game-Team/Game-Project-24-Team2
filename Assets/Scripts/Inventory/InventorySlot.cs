@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InventorySlot : MonoBehaviour,
     IBeginDragHandler,
@@ -19,6 +20,11 @@ public class InventorySlot : MonoBehaviour,
     [SerializeField] private Image _icon;
     [SerializeField] private TMP_Text _countText;
 
+    [Header("Sound")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _dragStartSound;
+    [SerializeField] private AudioClip _dropSound;
+
     // 현재 슬롯 아이템
     private Item _item;
 
@@ -33,6 +39,15 @@ public class InventorySlot : MonoBehaviour,
     private void Awake()
     {
         _canvas = GetComponentInParent<Canvas>();
+
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+            {
+                _audioSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
     }
 
     private void Start()
@@ -41,12 +56,43 @@ public class InventorySlot : MonoBehaviour,
         UpdateUI();
     }
 
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnSceneChanged;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnSceneChanged;
+        CancelDrag();
+    }
+
+    private void OnSceneChanged(Scene current, Scene next)
+    {
+        CancelDrag();
+    }
+
+    private void CancelDrag()
+    {
+        if (_dragIcon != null)
+        {
+            Destroy(_dragIcon);
+            _dragIcon = null;
+            OnDragCanceled?.Invoke();
+        }
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         // 빈 슬롯이면 드래그 불가
         if (_item == null)
         {
             return;
+        }
+
+        if (_audioSource != null && _dragStartSound != null)
+        {
+            _audioSource.PlayOneShot(_dragStartSound);
         }
 
         _dragIcon = new GameObject("DragIcon");
@@ -98,6 +144,7 @@ public class InventorySlot : MonoBehaviour,
         if (_dragIcon != null)
         {
             Destroy(_dragIcon);
+            _dragIcon = null;
         }
 
         // 드래그 종료 시 월드에 이벤트 방송
@@ -107,6 +154,11 @@ public class InventorySlot : MonoBehaviour,
             OnDragEndedWorld?.Invoke(_item, mousePos, (success) => {
                 if (success)
                 {
+                    if (_audioSource != null && _dropSound != null)
+                    {
+                        _audioSource.PlayOneShot(_dropSound);
+                    }
+
                     AddCount(-1);
                     if (_count <= 0) Clear();
                 }
@@ -135,6 +187,11 @@ public class InventorySlot : MonoBehaviour,
         // 빈 슬롯이면 아이템 이동
         if (_item == null)
         {
+            if (_audioSource != null && _dropSound != null)
+            {
+                _audioSource.PlayOneShot(_dropSound);
+            }
+
             SetItem(draggedSlot.Item, draggedSlot.Count);
             draggedSlot.Clear();
             return;

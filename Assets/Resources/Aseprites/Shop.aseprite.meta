@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3b661af40bfaa14c952f8fd5e2b5abc
+guid: 25fe1362e0462244eb02b4728c492d4f
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,19 +127,19 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Title
+  - name: Shop
     originalName: 
-    pivot: {x: 0.49411768, y: -0.03488372}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 255
-      height: 86
-    spriteID: 42e85538062db26449bb736d3e9767cd
+      width: 47
+      height: 37
+    spriteID: a5f786e977d84474291fdb7e0c5497eb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,25 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 2435266816
+      value0: 1844382282
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Title
+    name: Shop
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Title
+    - name: Shop
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 24
-        y: 3
-        width: 255
-        height: 86
-      spriteId: 42e85538062db26449bb736d3e9767cd
+        x: 9
+        y: 14
+        width: 47
+        height: 37
+      spriteId: a5f786e977d84474291fdb7e0c5497eb
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -181,5 +181,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 300, y: 100}
-  previousTextureSize: {x: 512, y: 128}
+  canvasSize: {x: 64, y: 64}
+  previousTextureSize: {x: 64, y: 64}

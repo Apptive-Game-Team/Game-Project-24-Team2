@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DragItemButton : MonoBehaviour,
     IBeginDragHandler,
@@ -19,6 +20,31 @@ public class DragItemButton : MonoBehaviour,
     {
         // 부모 Canvas 가져오기
         _canvas = GetComponentInParent<Canvas>();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnSceneChanged;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnSceneChanged;
+        CancelDrag();
+    }
+
+    private void OnSceneChanged(Scene current, Scene next)
+    {
+        CancelDrag();
+    }
+
+    private void CancelDrag()
+    {
+        if (_dragIcon != null)
+        {
+            Destroy(_dragIcon);
+            _dragIcon = null;
+        }
     }
 
     // 드래그 시작
@@ -73,6 +99,7 @@ public class DragItemButton : MonoBehaviour,
 
         // 드래그 아이콘 삭제
         Destroy(_dragIcon);
+        _dragIcon = null;
     }
 
     // 다른 아이템 위에 드랍

@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: cc0716592f466408daf65cc8e39df986
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _inventoryPanel: {instanceID: 0}
+  - _openButton: {instanceID: 0}
+  - _audioSource: {instanceID: 0}
+  - _openSound: {fileID: 8300000, guid: 3a8aa607feee49d46a5bee2a9ac674a7, type: 3}
+  - _closeSound: {fileID: 8300000, guid: ac728153bcda1734dbaf6b00b3924629, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
