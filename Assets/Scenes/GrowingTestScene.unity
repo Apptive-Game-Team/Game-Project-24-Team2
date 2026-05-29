@@ -1464,6 +1464,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _spriteWaterWaiting
+      value: 
+      objectReference: {fileID: 715141314}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterableTransform
+      value: 
+      objectReference: {fileID: 715141312}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _mushrooms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -1483,6 +1491,10 @@ PrefabInstance:
       propertyPath: '_spores.Array.data[3]'
       value: 
       objectReference: {fileID: 779058721}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterWaitingTransform
+      value: 
+      objectReference: {fileID: 715141313}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: '_mushrooms.Array.data[0]'
       value: 
@@ -1598,6 +1610,21 @@ AudioSource:
 --- !u!82 &715141311 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 8549129292837174241, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &715141312 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193364494119291253, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &715141313 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 60368263655410277, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &715141314 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5399957723017750271, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 715141307}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &717745228
@@ -2499,6 +2526,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _spriteWaterWaiting
+      value: 
+      objectReference: {fileID: 1166918288}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterableTransform
+      value: 
+      objectReference: {fileID: 1166918286}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _mushrooms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -2518,6 +2553,10 @@ PrefabInstance:
       propertyPath: '_spores.Array.data[3]'
       value: 
       objectReference: {fileID: 589804810}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterWaitingTransform
+      value: 
+      objectReference: {fileID: 1166918287}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: '_mushrooms.Array.data[0]'
       value: 
@@ -2632,6 +2671,21 @@ AudioSource:
 --- !u!82 &1166918285 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2882373877356786621, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1166918286 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193364494119291253, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1166918287 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 60368263655410277, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1166918288 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5399957723017750271, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 1166918282}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &1166918289 stripped
@@ -3475,6 +3529,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _spriteWaterWaiting
+      value: 
+      objectReference: {fileID: 1569121738}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterableTransform
+      value: 
+      objectReference: {fileID: 1569121736}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _mushrooms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -3510,6 +3572,10 @@ PrefabInstance:
       propertyPath: '_spores.Array.data[7]'
       value: 
       objectReference: {fileID: 1486603091}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterWaitingTransform
+      value: 
+      objectReference: {fileID: 1569121737}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: '_mushrooms.Array.data[0]'
       value: 
@@ -3620,6 +3686,21 @@ AudioSource:
 --- !u!82 &1569121735 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2882373877356786621, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1569121736 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193364494119291253, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1569121737 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 60368263655410277, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1569121738 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5399957723017750271, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 1569121732}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &1569121739 stripped
@@ -5695,6 +5776,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _spriteWaterWaiting
+      value: 
+      objectReference: {fileID: 9001682633956299798}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterableTransform
+      value: 
+      objectReference: {fileID: 9001682633956299796}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _mushrooms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -5714,6 +5803,10 @@ PrefabInstance:
       propertyPath: '_spores.Array.data[3]'
       value: 
       objectReference: {fileID: 308737424398212910}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterWaitingTransform
+      value: 
+      objectReference: {fileID: 9001682633956299797}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: '_mushrooms.Array.data[0]'
       value: 
@@ -5897,6 +5990,21 @@ AudioSource:
 --- !u!82 &9001682633956299795 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 8549129292837174241, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 9001682633956299791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9001682633956299796 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193364494119291253, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 9001682633956299791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9001682633956299797 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 60368263655410277, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 9001682633956299791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &9001682633956299798 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5399957723017750271, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 9001682633956299791}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
