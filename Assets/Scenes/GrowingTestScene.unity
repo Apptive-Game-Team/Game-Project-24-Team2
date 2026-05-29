@@ -832,6 +832,11 @@ Transform:
   - {fileID: 94085218}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &452113894 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193364494119291253, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &457110818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,6 +1469,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _spriteWaterWaiting
+      value: 
+      objectReference: {fileID: 1395724414}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterableTransform
+      value: 
+      objectReference: {fileID: 895758809}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _mushrooms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -1483,6 +1496,10 @@ PrefabInstance:
       propertyPath: '_spores.Array.data[3]'
       value: 
       objectReference: {fileID: 779058721}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterWaitingTransform
+      value: 
+      objectReference: {fileID: 1395724412}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: '_mushrooms.Array.data[0]'
       value: 
@@ -1717,6 +1734,16 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2415670747516179705, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 715141307}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &768528860 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5399957723017750271, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 9001682633956299791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &768528861 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 60368263655410277, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 9001682633956299791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &769053740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1918,6 +1945,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2658953663435809368, guid: 6f03a0ee7a0c70940a1bfb0ae929e910, type: 3}
   m_PrefabInstance: {fileID: 815974918}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &822283787 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 60368263655410277, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &822283789 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5399957723017750271, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1569121732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &823736763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3681323953575735001, guid: 7b1c68e2d569d5d4d825c2f3092d0439, type: 3}
@@ -1989,6 +2026,16 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6024858490757390957, guid: 7b1c68e2d569d5d4d825c2f3092d0439, type: 3}
   m_PrefabInstance: {fileID: 847582054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &882139201 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193364494119291253, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &895758809 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193364494119291253, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &908396248
 PrefabInstance:
@@ -2442,6 +2489,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _spriteWaterWaiting
+      value: 
+      objectReference: {fileID: 1471576063}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterableTransform
+      value: 
+      objectReference: {fileID: 882139201}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _mushrooms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -2461,6 +2516,10 @@ PrefabInstance:
       propertyPath: '_spores.Array.data[3]'
       value: 
       objectReference: {fileID: 589804810}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterWaitingTransform
+      value: 
+      objectReference: {fileID: 1471576061}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: '_mushrooms.Array.data[0]'
       value: 
@@ -2766,6 +2825,16 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1146598363393714231, guid: 2c88941bfec738340abcb6ed29b9f7f8, type: 3}
   m_PrefabInstance: {fileID: 1417580391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1395724412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 60368263655410277, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1395724414 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5399957723017750271, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 715141307}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1404413822 stripped
 GameObject:
@@ -3171,6 +3240,16 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!4 &1471576061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 60368263655410277, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1471576063 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5399957723017750271, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 1166918282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1486603089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3413,6 +3492,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _spriteWaterWaiting
+      value: 
+      objectReference: {fileID: 822283789}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterableTransform
+      value: 
+      objectReference: {fileID: 452113894}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _mushrooms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -3448,6 +3535,10 @@ PrefabInstance:
       propertyPath: '_spores.Array.data[7]'
       value: 
       objectReference: {fileID: 1486603091}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterWaitingTransform
+      value: 
+      objectReference: {fileID: 822283787}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: '_mushrooms.Array.data[0]'
       value: 
@@ -5519,6 +5610,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2132856788922855063, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _Reaping
       value: 
@@ -5568,6 +5663,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _spriteWaterWaiting
+      value: 
+      objectReference: {fileID: 768528860}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterableTransform
+      value: 
+      objectReference: {fileID: 9001682633956299796}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: _mushrooms.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -5587,6 +5690,10 @@ PrefabInstance:
       propertyPath: '_spores.Array.data[3]'
       value: 
       objectReference: {fileID: 308737424398212910}
+    - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+      propertyPath: _waterWaitingTransform
+      value: 
+      objectReference: {fileID: 768528861}
     - target: {fileID: 3565685767501738406, guid: d3e081844020d32449491a2bffb127b0, type: 3}
       propertyPath: '_mushrooms.Array.data[0]'
       value: 
@@ -5772,6 +5879,11 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 8549129292837174241, guid: d3e081844020d32449491a2bffb127b0, type: 3}
   m_PrefabInstance: {fileID: 9001682633956299791}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &9001682633956299796 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3193364494119291253, guid: d3e081844020d32449491a2bffb127b0, type: 3}
+  m_PrefabInstance: {fileID: 9001682633956299791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5784,10 +5896,10 @@ SceneRoots:
   - {fileID: 427033026}
   - {fileID: 701612930}
   - {fileID: 1886218155}
+  - {fileID: 62368244}
   - {fileID: 1486896329}
   - {fileID: 1023497301}
   - {fileID: 1217934716}
   - {fileID: 7652743559574251756}
-  - {fileID: 62368244}
   - {fileID: 321295304}
   - {fileID: 1767168796}

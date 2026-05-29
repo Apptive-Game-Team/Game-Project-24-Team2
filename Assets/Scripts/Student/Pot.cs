@@ -27,12 +27,18 @@ public class Pot : MonoBehaviour
     [SerializeField] private GameObject[] _babyMushrooms;
 
     //물 게이지 관련
-    [SerializeField] private float _waterGauge = 0f; //현재 물 게이지
-    [SerializeField] private float _waterMinGauge = 0f; //최소 물 게이지
-    [SerializeField] private float _waterMaxGauge = 30f; //최대 물 게이지
-    [SerializeField] private float _waterGaugeSpeed = 10f; //물 게이지 올라가는 속도
     [SerializeField] private Transform _waterMaxGaugeTransform;
     [SerializeField] private Transform _waterGaugeTransform;
+    [SerializeField] private SpriteRenderer _spriteWaterWaiting;
+    [SerializeField] private Transform _waterWaitingTransform;
+    [SerializeField] private Transform _waterableTransform;
+    private float _waterGauge = 0f; //현재 물 게이지
+    private float _waterMinGauge = 0f; //최소 물 게이지
+    private float _waterMaxGauge = 30f; //최대 물 게이지
+    private float _waterGaugeSpeed = 10f; //물 게이지 올라가는 속도
+    private float _wateringTerm = 5f;
+    private bool _isWaterable = true;
+    private float blinkSpeed = 8.0f;
 
     //성장도 관련
     [SerializeField] private float _growth; //성장도
@@ -152,29 +158,22 @@ public class Pot : MonoBehaviour
 
     private void Update()
     {
-        if (IsClickPot())
+        if (IsSporePlaced)
         {
-            if (IsSporePlaced) //포자 심었을 때
-            {
-                IncreaseWaterGauge(); //클릭하면 게이지 상승
-                if (_waterGauge >= _waterMaxGauge)
-                {
-                    CompleteWater();
-                }
-            }
-            if (_isGrown && IsClickDownPot()) //버섯이 다 자란 화분을 클릭한 시점에 버섯 수확
-            {
-                _reapingSound.Play();
-                Debug.Log(_reapingEffect.name);
-                _reapingEffect.Play();
-                ReapMushroom(_whatspore);
-                _growth = _minGrowth;
-            }
+            Watering();
         }
-
-        else
+        if (_isWaterable) //물 줄 수 있는데 물 안주면 물 게이지 감소 (전 단계로 돌아가진 않음)
         {
             DecreaseWaterGauge();
+        }
+
+        if (_isGrown && IsClickDownPot()) //버섯이 다 자란 화분을 클릭한 시점에 버섯 수확
+        {
+            _reapingSound.Play();
+            Debug.Log(_reapingEffect.name);
+            _reapingEffect.Play();
+            ReapMushroom(_whatspore);
+            _growth = _minGrowth;
         }
 
         UpdateWaterGaugeBar(); //게이지 시각화
@@ -255,21 +254,8 @@ public class Pot : MonoBehaviour
             _mushrooms[i].SetActive(false);
             _babyMushrooms[i].SetActive(false);
         }
-    }
-
-    private bool IsClickPot() //클릭 유지중인지 확인
-    {
-        if (Mouse.current.leftButton.isPressed)
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-
-            Collider2D hit = Physics2D.OverlapPoint(mousePos);
-            if (hit == _potCollider)
-            {
-                return true;
-            }
-        }
-        return false;
+        _waterWaitingTransform.gameObject.SetActive(false);
+        _waterableTransform.gameObject.SetActive(false);
     }
 
     private bool IsClickDownPot() //클릭 누른 시점만 확인
@@ -304,6 +290,49 @@ public class Pot : MonoBehaviour
         }
     }
 
+    private void DecreaseWaterGauge()
+    {
+        if (_waterGauge > _waterMinGauge)
+            {
+                _waterGauge -= _waterGaugeSpeed * Time.deltaTime * 0.2f;
+                _waterGauge = Mathf.Max(_waterGauge, _waterMinGauge);
+            }
+        _wateringSound.Stop();
+    }
+
+    private void Watering()
+    {
+        if (!_isWaterable)
+        {
+            _wateringTerm -= Time.deltaTime;
+            if (_wateringTerm >= 0f) //0~5초동안 물 채우기
+            {
+                _waterableTransform.gameObject.SetActive(false);
+                _waterWaitingTransform.gameObject.SetActive(true);
+                IncreaseWaterGauge();
+                if (_waterGauge >= _waterMaxGauge)
+                {
+                    CompleteWater();
+                }
+            }
+            else if(_wateringTerm < 0f && _wateringTerm >= -3f) //5~8초동안 물 못채움
+            {
+
+                BlinkingWaterWaiting();
+            }
+            else if(_wateringTerm < -3f)
+            {
+                _waterableTransform.gameObject.SetActive(true);
+                Color waitingColor = _spriteWaterWaiting.color;
+                waitingColor.a = 1f;
+                _spriteWaterWaiting.color = waitingColor;
+                _waterWaitingTransform.gameObject.SetActive(false);
+                _isWaterable = true;
+                _wateringTerm = 5f;
+            }
+        }
+    }
+
     private void CompleteWater()
     {
         _waterGauge = 0f;
@@ -321,6 +350,8 @@ public class Pot : MonoBehaviour
         if (_growth >= _maxGrowth) //완전 성장 아기버섯 -> 버섯
         {
             SecondEvolution(_whatspore);
+            _waterableTransform.gameObject.SetActive(false);
+            _waterWaitingTransform.gameObject.SetActive(false);
             _growingEffect.Play();
             _growingSound.Play();
         }
@@ -344,16 +375,6 @@ public class Pot : MonoBehaviour
         _babyMushrooms[whatspore].transform.localScale = new Vector3(0.5f*(100f+_growth)/100f, 0.5f*(100f+_growth)/100f, _babyMushrooms[whatspore].transform.localScale.z);
     }
 
-    private void DecreaseWaterGauge()
-    {
-        if (_waterGauge > _waterMinGauge)
-            {
-                _waterGauge -= _waterGaugeSpeed * Time.deltaTime;
-                _waterGauge = Mathf.Max(_waterGauge, _waterMinGauge);
-            }
-        _wateringSound.Stop();
-    }
-
     private void AppearWaterGauge()
     {
         _waterMaxGaugeTransform.gameObject.SetActive(true);
@@ -367,11 +388,24 @@ public class Pot : MonoBehaviour
         }
     }
 
+    private void BlinkingWaterWaiting() //물 대기 표시 깜빡거리기
+    {
+        if (_wateringTerm <= 1f)
+        {
+            float sinValue = Mathf.Sin(Time.time * blinkSpeed);
+
+            float waitingAlpha = (sinValue + 1.0f) * 0.5f;
+
+            Color waitingColor = _spriteWaterWaiting.color;
+            waitingColor.a = waitingAlpha;
+            _spriteWaterWaiting.color = waitingColor;
+        }
+    }
     private void UpdateWaterGaugeBar()
     {
         if (IsSporePlaced)
         {
-            if (IsClickPot())
+            if (_waterGauge > _waterMinGauge)
             {
                 AppearWaterGauge();
             }
@@ -453,6 +487,17 @@ public class Pot : MonoBehaviour
                     onResult?.Invoke(true);
                 }
                 else onResult?.Invoke(false);
+            }
+            else if (item is NormalWaterItem)
+            {
+                if (IsSporePlaced && _isWaterable)
+                {
+                    _isWaterable = false;
+                }
+                else if (!_isWaterable)
+                {
+                    Debug.Log("버섯이 아직 목 마르지 않다네요...");
+                }
             }
             else // 포자인 경우
             {
