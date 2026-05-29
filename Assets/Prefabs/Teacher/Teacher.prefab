@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.13455, y: 6.466223, z: 1.5}
+  m_LocalScale: {x: 2.8525972, y: 2.9636614, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,11 +79,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1154037243
-  m_SortingLayer: 2
-  m_SortingOrder: -10
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7094058698977562325, guid: 125518b183018414cb3206d02e7131a7, type: 3}
+  m_Sprite: {fileID: 2928071918882144430, guid: 2a93aa0fc36ddef4ebbb6a301afb15c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69996889d16398479f2a6c5b06e391e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeacherFSM
-  writingSprite: {fileID: 7094058698977562325, guid: 125518b183018414cb3206d02e7131a7, type: 3}
-  prepareSprite: {fileID: -3518782762472708370, guid: daaeb765ca503be4db345a0a7bd85250, type: 3}
-  watchingSprite: {fileID: 5862103014615607508, guid: 635e802a476c28947aed5558aef82982, type: 3}
+  writingSprite: {fileID: 2928071918882144430, guid: 2a93aa0fc36ddef4ebbb6a301afb15c1, type: 3}
+  prepareSprite: {fileID: -4280740681895774049, guid: 1ca3ee079e6e51d43a1d117994319bf8, type: 3}
+  watchingSprite: {fileID: -964771730590560179, guid: c39208aea81b37c4da406f3863fa6854, type: 3}
   warningSound: {fileID: 8300000, guid: 1159879a6b7658b4f893a181093cd799, type: 3}
 --- !u!82 &8890713620533733194
 AudioSource:
