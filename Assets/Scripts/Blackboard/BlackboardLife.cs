@@ -33,6 +33,15 @@ public class BlackboardLife : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // 1번 이상 적발된 기록이 있다면 이름 작성 유지
+        if (currentDamage > 0 && Blackboard.Instance != null)
+        {
+            Blackboard.Instance.SetNoisyPerson("송이");
+        }
+    }
+
     public void GetDamage()
     {
         // 5획 미만일 때만 로직 실행

@@ -3,9 +3,21 @@ using TMPro;
 
 public partial class Blackboard : MonoBehaviour
 {
+    public static Blackboard Instance { get; private set; }
+
     [Header("Noisy Person Settings")]
     [SerializeField] private TextMeshProUGUI noisyPersonText;
     
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     public void SetNoisyPerson(string name)
     {
         if (noisyPersonText != null)
