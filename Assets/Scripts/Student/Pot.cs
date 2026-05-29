@@ -506,6 +506,7 @@ public class Pot : MonoBehaviour
                     _pottingSound.Play();
                     _pottingEffect.Play();
                     ShowSpore(item);
+                    _waterableTransform.gameObject.SetActive(true);
                     IsSporePlaced = true;
                     OnSporePlaced?.Invoke();
                     onResult?.Invoke(true);
