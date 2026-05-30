@@ -74,6 +74,10 @@ public class Pot : MonoBehaviour
         public float WaterGauge;
         public float Growth;
         public bool IsGrown;
+
+        public float WateringTerm = 5f;
+        public bool IsWaterable = true;
+        public DateTime LastSaveTime;
     }
     private static PotState[] _savedStates;
 
@@ -118,17 +122,43 @@ public class Pot : MonoBehaviour
             _waterGauge = state.WaterGauge;
             _growth = state.Growth;
             _isGrown = state.IsGrown;
+            
+            _wateringTerm = state.WateringTerm;
+            _isWaterable = state.IsWaterable;
+
+            // 다른 씬에 다녀온 시간(오프라인 시간)을 계산하여 성장에 반영합니다.
+            if (state.LastSaveTime.Ticks > 0)
+            {
+                TimeSpan elapsed = DateTime.Now - state.LastSaveTime;
+                SimulateOfflineTime((float)elapsed.TotalSeconds);
+            }
 
             if (IsPotPlaced) ShowPot();
             else HideGuide(); // 설치되지 않은 화분은 완벽히 숨김
 
-            if (IsSporePlaced && !_isGrown)
+            if (IsSporePlaced)
             {
-                _spores[_whatspore].SetActive(true);
-            }
-            if (_isGrown)
-            {
-                SecondEvolution(_whatspore);
+                if (_isGrown)
+                {
+                    SecondEvolution(_whatspore);
+                }
+                else if (_growth > 0)
+                {
+                    // 아기 버섯 상태 복구
+                    FirstEvolution(_whatspore);
+                    ManageTransform(_whatspore);
+                }
+                else
+                {
+                    _spores[_whatspore].SetActive(true);
+                }
+
+                // 물방울 아이콘 상태 복구
+                if (!_isGrown)
+                {
+                    _waterableTransform.gameObject.SetActive(_isWaterable);
+                    _waterWaitingTransform.gameObject.SetActive(!_isWaterable && _wateringTerm >= -3f);
+                }
             }
         }
     }
@@ -153,6 +183,10 @@ public class Pot : MonoBehaviour
             state.WaterGauge = _waterGauge;
             state.Growth = _growth;
             state.IsGrown = _isGrown;
+            
+            state.WateringTerm = _wateringTerm;
+            state.IsWaterable = _isWaterable;
+            state.LastSaveTime = DateTime.Now;
         }
     }
 
@@ -177,6 +211,52 @@ public class Pot : MonoBehaviour
         }
 
         UpdateWaterGaugeBar(); //게이지 시각화
+    }
+
+    private void SimulateOfflineTime(float elapsedSeconds)
+    {
+        // 최대 30초까지만 연산 (물주기 완료 및 물마름 처리에 충분한 시간)
+        float simulationTime = Mathf.Min(elapsedSeconds, 30f);
+        float step = 0.1f; // 0.1초 단위로 시간 가속 시뮬레이션
+
+        while (simulationTime > 0)
+        {
+            float dt = Mathf.Min(step, simulationTime);
+            simulationTime -= dt;
+
+            if (IsSporePlaced && !_isGrown)
+            {
+                // 1. 물 주는 중인 상태 시뮬레이션
+                if (!_isWaterable)
+                {
+                    _wateringTerm -= dt;
+                    if (_wateringTerm >= 0f)
+                    {
+                        _waterGauge += _waterGaugeSpeed * dt;
+                        _waterGauge = Mathf.Min(_waterGauge, _waterMaxGauge);
+
+                        if (_waterGauge >= _waterMaxGauge)
+                        {
+                            _waterGauge = 0f;
+                            _growth += 20f;
+                            
+                            if (_growth >= _maxGrowth) _isGrown = true;
+                        }
+                    }
+                    else if (_wateringTerm < -3f)
+                    {
+                        _isWaterable = true;
+                        _wateringTerm = 5f;
+                    }
+                }
+                
+                // 2. 게이지 감소(물 마름) 시뮬레이션
+                if (_isWaterable && !_isGrown && _waterGauge > _waterMinGauge)
+                {
+                    _waterGauge = Mathf.Max(_waterGauge - (_waterGaugeSpeed * dt * 0.2f), _waterMinGauge);
+                }
+            }
+        }
     }
 
     public void ShowGuide() //드래그 중 화분 반투명하게 표시
