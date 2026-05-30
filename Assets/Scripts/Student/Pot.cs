@@ -229,8 +229,7 @@ public class Pot : MonoBehaviour
                 // 1. 물 주는 중인 상태 시뮬레이션
                 if (!_isWaterable)
                 {
-                    _wateringTerm -= dt;
-                    if (_wateringTerm >= 0f)
+                    if (_wateringTerm > 0f)
                     {
                         _waterGauge += _waterGaugeSpeed * dt;
                         _waterGauge = Mathf.Min(_waterGauge, _waterMaxGauge);
@@ -241,12 +240,18 @@ public class Pot : MonoBehaviour
                             _growth += 20f;
                             
                             if (_growth >= _maxGrowth) _isGrown = true;
+                            
+                            _wateringTerm = 0f; // 성장 즉시 대기(쿨타임) 상태로 전환
                         }
                     }
-                    else if (_wateringTerm < -3f)
+                    else
                     {
-                        _isWaterable = true;
-                        _wateringTerm = 5f;
+                        _wateringTerm -= dt;
+                        if (_wateringTerm < -3f)
+                        {
+                            _isWaterable = true;
+                            _wateringTerm = 5f;
+                        }
                     }
                 }
                 
@@ -384,8 +389,7 @@ public class Pot : MonoBehaviour
     {
         if (!_isWaterable)
         {
-            _wateringTerm -= Time.deltaTime;
-            if (_wateringTerm >= 0f) //0~5초동안 물 채우기
+            if (_wateringTerm > 0f) // 다음 성장 단계 도달 시까지 물 채우기
             {
                 _waterableTransform.gameObject.SetActive(false);
                 _waterWaitingTransform.gameObject.SetActive(true);
@@ -393,11 +397,12 @@ public class Pot : MonoBehaviour
                 if (_waterGauge >= _waterMaxGauge)
                 {
                     CompleteWater();
+                    _wateringTerm = 0f; // 한 단계 성장 후 즉시 쿨타임으로 전환
                 }
             }
-            else if(_wateringTerm < 0f && _wateringTerm >= -3f) //5~8초동안 물 못채움
+            else if(_wateringTerm <= 0f && _wateringTerm >= -3f) // 쿨타임 대기 상태
             {
-
+                _wateringTerm -= Time.deltaTime;
                 BlinkingWaterWaiting();
             }
             else if(_wateringTerm < -3f)
