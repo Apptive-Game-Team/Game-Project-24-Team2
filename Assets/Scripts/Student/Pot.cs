@@ -364,7 +364,7 @@ public class Pot : MonoBehaviour
         {
             if (Mouse.current.rightButton.isPressed)
             {
-                _waterGauge += _waterGaugeSpeed * Time.deltaTime * 9; //왼/오른쪽 동시 클릭 시 더 빠르게 게이지 상승
+                _waterGauge += _waterGaugeSpeed * Time.deltaTime * 9; //우클릭 시 더 빠르게 게이지 상승
             }
             _waterGauge += _waterGaugeSpeed * Time.deltaTime;
             _waterGauge = Mathf.Min(_waterGauge, _waterMaxGauge);
@@ -584,7 +584,7 @@ public class Pot : MonoBehaviour
                     Debug.Log("버섯이 아직 목 마르지 않다네요...");
                 }
             }
-            else // 포자인 경우
+            else if (item is SporeItem) // 포자인 경우
             {
                 if (IsPotPlaced && !IsSporePlaced)
                 {
