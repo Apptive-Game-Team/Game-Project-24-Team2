@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a15ddce1366e7494a8a2eff051ba4ad4
+guid: b2d2888f8687e99499b461b2e998ebf0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1107968673655832674
-    second: potIcon_0
+      213: 7375542331918882992
+    second: mush_meal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: potIcon_0
+      name: mush_meal_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
-        width: 64
-        height: 47
+        x: 12
+        y: 14
+        width: 108
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e9fbb709c54bf90f0800000000000000
-      internalID: -1107968673655832674
+      spriteID: 0b891ef6ca03b5660800000000000000
+      internalID: 7375542331918882992
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      potIcon_0: -1107968673655832674
+      mush_meal_0: 7375542331918882992
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: a15ddce1366e7494a8a2eff051ba4ad4
+guid: bc66f6d5d61935542971de110b176cba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1107968673655832674
-    second: potIcon_0
+      213: 7386561649677480836
+    second: spore_meal_0
+  - first:
+      213: -6151375143469427815
+    second: spore_meal_1
+  - first:
+      213: -8056413559702554983
+    second: spore_meal_2
+  - first:
+      213: 6437978035421449575
+    second: spore_meal_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: potIcon_0
+      name: spore_meal_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
-        width: 64
-        height: 47
+        x: 8
+        y: 36
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e9fbb709c54bf90f0800000000000000
-      internalID: -1107968673655832674
+      spriteID: 483bc884fa6528660800000000000000
+      internalID: 7386561649677480836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spore_meal_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 13
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993565df5ece1aaa0800000000000000
+      internalID: -6151375143469427815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spore_meal_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 11
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 996f94a5d8ed13090800000000000000
+      internalID: -8056413559702554983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spore_meal_3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 8
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d0011d9ea485950800000000000000
+      internalID: 6437978035421449575
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      potIcon_0: -1107968673655832674
+      spore_meal_0: 7386561649677480836
+      spore_meal_1: -6151375143469427815
+      spore_meal_2: -8056413559702554983
+      spore_meal_3: 6437978035421449575
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

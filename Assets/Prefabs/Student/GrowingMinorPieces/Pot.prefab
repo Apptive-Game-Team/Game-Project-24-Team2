@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 918135854279009508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.46, y: 0.6, z: 0}
-  m_LocalScale: {x: 9.640001, y: 8.81, z: 3.2133336}
+  m_LocalPosition: {x: 0.522, y: 0.0731, z: 0}
+  m_LocalScale: {x: 1.9297569, y: 1.749575, z: 3.2133336}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2076769241821422547}
@@ -178,8 +178,8 @@ Transform:
   m_GameObject: {fileID: 1370533367123869207}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 1.9, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1.25}
+  m_LocalPosition: {x: 0.359, y: 0.347, z: 0}
+  m_LocalScale: {x: 0.07418028, y: 0.07154528, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8961360030126748403}
@@ -5261,7 +5261,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.02, y: -3.21, z: 0}
-  m_LocalScale: {x: 0.95, y: 1.08, z: 1}
+  m_LocalScale: {x: 4.3724294, y: 5.149025, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 481740933200751585}
@@ -5321,7 +5321,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5649470061204452833, guid: 8ec5e5d815d952a408e92e7c37163a65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a15ddce1366e7494a8a2eff051ba4ad4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5351,26 +5351,34 @@ MonoBehaviour:
   _spore:
     serializedVersion: 2
     m_Bits: 128
-  _mushrooms: []
+  _mushrooms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _mushroomItems: []
-  _babyMushrooms: []
+  _babyMushrooms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _waterMaxGaugeTransform: {fileID: 481740933200751585}
   _waterGaugeTransform: {fileID: 2076769241821422547}
-  _spriteWaterWaiting: {fileID: 0}
-  _waterWaitingTransform: {fileID: 0}
-  _waterableTransform: {fileID: 0}
+  _spriteWaterWaiting: {fileID: 5399957723017750271}
+  _waterWaitingTransform: {fileID: 60368263655410277}
+  _waterableTransform: {fileID: 3193364494119291253}
   _growth: 0
   _maxGrowth: 100
   _minGrowth: 0
   IsSporePlaced: 0
   IsPotPlaced: 0
-  _pottingSound: {fileID: 0}
-  _wateringSound: {fileID: 0}
-  _reapingSound: {fileID: 0}
-  _growingSound: {fileID: 0}
+  _pottingSound: {fileID: 2882373877356786621}
+  _wateringSound: {fileID: 4218427457977448433}
+  _reapingSound: {fileID: 3258832950618625591}
+  _growingSound: {fileID: 8549129292837174241}
   _pottingEffect: {fileID: 982766298903887479}
-  _reapingEffect: {fileID: 0}
-  _growingEffect: {fileID: 0}
+  _reapingEffect: {fileID: 2415670747516179705}
+  _growingEffect: {fileID: 6040422511459041422}
 --- !u!82 &2882373877356786621
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5793,17 +5801,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005009562, y: -0.044065967}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.02, y: 2.25}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3, y: 2.3}
+  m_Size: {x: 0.785768, y: 0.6255034}
   m_EdgeRadius: 0
 --- !u!1 &5598013671458842136
 GameObject:
@@ -10726,8 +10734,8 @@ Transform:
   m_GameObject: {fileID: 7021288711510654615}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 2, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.3, z: 1.25}
+  m_LocalPosition: {x: 0.375, y: 0.35, z: 0}
+  m_LocalScale: {x: 0.040398203, y: 0.03405456, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8961360030126748403}
@@ -10878,7 +10886,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0526316, y: 1, z: 0.92592597}
+  m_LocalScale: {x: 0.4, y: 0, z: 0.32}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8961360030126748403}

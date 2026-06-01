@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MealSpore
   _itemName: "\uAE09\uC2DD \uD3EC\uC790"
   _price: 999999
-  _icon: {fileID: -564754544291652716, guid: e87e4b1edb2dbb3478455b5182958a5c, type: 3}
+  _icon: {fileID: 21300000, guid: bc66f6d5d61935542971de110b176cba, type: 3}
   _shopOrder: 4

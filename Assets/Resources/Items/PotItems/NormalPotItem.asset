@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NormalPotItem
   _itemName: "\uD654\uBD84"
   _price: 1000
-  _icon: {fileID: -8095589413084118272, guid: a15ddce1366e7494a8a2eff051ba4ad4, type: 3}
+  _icon: {fileID: 21300000, guid: a15ddce1366e7494a8a2eff051ba4ad4, type: 3}
   _shopOrder: 0

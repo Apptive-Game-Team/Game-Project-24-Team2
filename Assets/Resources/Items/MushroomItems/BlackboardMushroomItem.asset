@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlackboardMushroomItem
   _itemName: "\uCE60\uD310 \uBC84\uC12F"
   _price: 0
-  _icon: {fileID: 2774169817373779138, guid: 1f66366af7b1135418723a3b091adb97, type: 3}
+  _icon: {fileID: 21300000, guid: 79303e90cff2e9e459c20539c4d4681c, type: 3}
   _shopOrder: -1

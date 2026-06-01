@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: a15ddce1366e7494a8a2eff051ba4ad4
+guid: c7bd7a66024f12e409a9f842db798554
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1107968673655832674
-    second: potIcon_0
+      213: -2764208015426301254
+    second: spore_blackboard_0
+  - first:
+      213: 8163650966665783551
+    second: spore_blackboard_1
+  - first:
+      213: -1839039009770624685
+    second: spore_blackboard_2
+  - first:
+      213: 1441704345363746525
+    second: spore_blackboard_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: potIcon_0
+      name: spore_blackboard_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
-        width: 64
-        height: 47
+        x: 8
+        y: 36
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e9fbb709c54bf90f0800000000000000
-      internalID: -1107968673655832674
+      spriteID: ab25a33947f83a9d0800000000000000
+      internalID: -2764208015426301254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spore_blackboard_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 13
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff863622d4d1b4170800000000000000
+      internalID: 8163650966665783551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spore_blackboard_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 11
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3592986a3cb6a76e0800000000000000
+      internalID: -1839039009770624685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spore_blackboard_3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 8
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dde0b80b676f10410800000000000000
+      internalID: 1441704345363746525
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      potIcon_0: -1107968673655832674
+      spore_blackboard_0: -2764208015426301254
+      spore_blackboard_1: 8163650966665783551
+      spore_blackboard_2: -1839039009770624685
+      spore_blackboard_3: 1441704345363746525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
