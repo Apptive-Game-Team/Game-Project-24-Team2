@@ -362,10 +362,6 @@ public class Pot : MonoBehaviour
     {
         if (_waterGauge < _waterMaxGauge)
         {
-            if (Mouse.current.rightButton.isPressed)
-            {
-                _waterGauge += _waterGaugeSpeed * Time.deltaTime * 9; //우클릭 시 더 빠르게 게이지 상승
-            }
             _waterGauge += _waterGaugeSpeed * Time.deltaTime;
             _waterGauge = Mathf.Min(_waterGauge, _waterMaxGauge);
             if (!_wateringSound.isPlaying)
