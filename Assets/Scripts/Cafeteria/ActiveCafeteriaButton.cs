@@ -17,7 +17,7 @@ public class ActiveCafeteriaButton : MonoBehaviour
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
-        _cafeteriaButton.SetActive(false);
+        //_cafeteriaButton.SetActive(false);
         InventoryManager.OnMealMushroomReaped += ActiveGoToCafeteriaButton;
 
         SceneManager.sceneLoaded += OnSceneLoaded;

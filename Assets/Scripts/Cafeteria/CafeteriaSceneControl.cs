@@ -13,17 +13,21 @@ public class CafeteriaSceneControl : MonoBehaviour
     [SerializeField] private GameObject _black2;
     [SerializeField] private GameObject _meal;
     [SerializeField] private GameObject _table;
+    [SerializeField] private GameObject _blackBackground;
     [SerializeField] private GameObject _finish;
+    [SerializeField] private GameObject _inventory;
 
     [Header("Sound")]
     [SerializeField] private AudioSource _walkingSound;
     [SerializeField] private AudioSource _doom;
+    [SerializeField] private AudioSource _finishSound;
 
     private void Awake()
     {
         _teacher2.SetActive(false);
         _meal.SetActive(false);
         _table.SetActive(false);
+        _blackBackground.SetActive(false);
         _finish.SetActive(false);
         InventorySlot.OnDragEndedWorld += HandleMealMushroomDrop;
         StartCoroutine(MoveTeacher());
@@ -85,7 +89,6 @@ public class CafeteriaSceneControl : MonoBehaviour
         _doom.Play();
         yield return new WaitForSeconds(2f);
 
-        _background.SetActive(false);
         _black1.SetActive(false);
         _black2.SetActive(false);
 
@@ -151,9 +154,7 @@ public class CafeteriaSceneControl : MonoBehaviour
         {
             if (item.ItemName == "급식 버섯")
             {
-                _meal.SetActive(false);
-                _table.SetActive(false);
-                _finish.SetActive(true);
+                StartCoroutine(FinishScene());
 
                 onResult?.Invoke(true);
             }
@@ -168,4 +169,22 @@ public class CafeteriaSceneControl : MonoBehaviour
         }
     }
     
+    private IEnumerator FinishScene()
+    {
+        _inventory.SetActive(false);
+        _blackBackground.SetActive(true);
+
+        SpriteRenderer tableSprite = _table.GetComponent<SpriteRenderer>();
+        SpriteRenderer mealSprite = _meal.GetComponent<SpriteRenderer>();
+        StartCoroutine(FadeOut(tableSprite, 0.6f));
+        StartCoroutine(FadeOut(mealSprite, 0.6f));
+        SpriteRenderer blackBackgroundSprite = _blackBackground.GetComponent<SpriteRenderer>();
+        StartCoroutine(FadeIn(blackBackgroundSprite, 0.6f));
+        yield return new WaitForSeconds(0.6f);
+
+        _finish.SetActive(true);
+        _finishSound.Play();
+        SpriteRenderer finishSprite = _finish.GetComponent<SpriteRenderer>();
+        StartCoroutine(FadeIn(finishSprite, 1f));
+    }
 }
