@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static event Action OnMealMushroomReaped;
     public static InventoryManager Instance { get; private set; }
 
     private static bool _isShopSubscribed;
@@ -161,6 +164,12 @@ public class InventoryManager : MonoBehaviour
 
             _pendingPurchases.Clear();
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
     }
 
     private void Start()
@@ -181,6 +190,7 @@ public class InventoryManager : MonoBehaviour
 
         // 버섯 수확 이벤트 구독 해제
         Pot.OnMushroomReaped -= HandleMushroomReaped;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // 버섯 수확 시 인벤토리에 추가
@@ -190,6 +200,10 @@ public class InventoryManager : MonoBehaviour
         
         if (mushroomItem != null)
         {
+            if (mushroomItem.ItemName == "급식 버섯")
+            {
+                OnMealMushroomReaped?.Invoke();
+            }
             PutItem(mushroomItem);
         }
         else

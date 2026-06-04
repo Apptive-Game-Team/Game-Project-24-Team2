@@ -41,6 +41,12 @@ public class ClassroomStealthManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "CafeteriaScene")
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         // 씬 이름에 따라 플레이어 위치 상태 자동 변경
         if (scene.name == "MainScene")
         {

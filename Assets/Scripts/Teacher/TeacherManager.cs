@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class TeacherManager : MonoBehaviour
 {
@@ -47,6 +48,24 @@ public class TeacherManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "CafeteriaScene")
+        {
+            gameObject.SetActive(false);
         }
     }
 
