@@ -171,7 +171,17 @@ public class CafeteriaSceneControl : MonoBehaviour
     
     private IEnumerator FinishScene()
     {
-        _inventory.SetActive(false);
+        // Inspector에서 할당된 인벤토리가 파괴되지 않았다면 비활성화
+        if (_inventory != null)
+        {
+            _inventory.SetActive(false);
+        }
+        // DontDestroyOnLoad로 넘어와 살아있는 실제 인벤토리를 찾아 비활성화
+        GameObject inventoryCanvas = GameObject.Find("InventoryCanvas");
+        if (inventoryCanvas != null)
+        {
+            inventoryCanvas.SetActive(false);
+        }
         _blackBackground.SetActive(true);
 
         SpriteRenderer tableSprite = _table.GetComponent<SpriteRenderer>();
