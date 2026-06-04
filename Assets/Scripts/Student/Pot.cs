@@ -136,7 +136,7 @@ public class Pot : MonoBehaviour
             if (IsPotPlaced) ShowPot();
             else HideGuide(); // 설치되지 않은 화분은 완벽히 숨김
 
-            if (IsSporePlaced)
+            if (IsSporePlaced || _isGrown)
             {
                 if (_isGrown)
                 {
@@ -333,14 +333,34 @@ public class Pot : MonoBehaviour
 
     private void InitSprite()
     {
+        int potOrder = 0;
+        SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+        if (mySprite != null) potOrder = mySprite.sortingOrder;
+
         for (int i = 0; i < _spores.Length; i++)
         {
             _spores[i].SetActive(false);
             _mushrooms[i].SetActive(false);
             _babyMushrooms[i].SetActive(false);
+
+            // 버섯 관련 오브젝트들이 무조건 화분보다 앞에 그려지도록 Order in Layer 강제 설정
+            SetSortingOrder(_spores[i], potOrder + 1);
+            SetSortingOrder(_babyMushrooms[i], potOrder + 1);
+            SetSortingOrder(_mushrooms[i], potOrder + 1);
         }
         _waterWaitingTransform.gameObject.SetActive(false);
         _waterableTransform.gameObject.SetActive(false);
+    }
+
+    private void SetSortingOrder(GameObject obj, int order)
+    {
+        if (obj == null) return;
+        // 자식 오브젝트까지 포함하여 모든 SpriteRenderer의 순서를 조정
+        SpriteRenderer[] renderers = obj.GetComponentsInChildren<SpriteRenderer>(true);
+        foreach (var sr in renderers)
+        {
+            sr.sortingOrder = order;
+        }
     }
 
     private bool IsClickDownPot() //클릭 누른 시점만 확인
