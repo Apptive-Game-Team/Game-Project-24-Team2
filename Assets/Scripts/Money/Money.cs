@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class Money : MonoBehaviour
 {
@@ -19,6 +20,21 @@ public class Money : MonoBehaviour
         ShopPurchaseHandler.OnItemPurchased -= HandleItemPurchased;
         Pot.OnMushroomReaped -= HandleMushroomReaped;
         Book.OnStudyCompleted -= HandleStudyCompleted;
+    }
+
+    private void Update()
+    {
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return;
+
+        // 0번 키를 누르면 100만원 추가 치트 발동
+        if (keyboard.digit0Key.wasPressedThisFrame)
+        {
+            int cheatAmount = 1000000;
+            currentMoney += cheatAmount;
+            OnMoneyChanged?.Invoke(currentMoney);
+            OnMoneyEarned?.Invoke(cheatAmount);
+        }
     }
 
     private void HandleItemPurchased(Item item)
