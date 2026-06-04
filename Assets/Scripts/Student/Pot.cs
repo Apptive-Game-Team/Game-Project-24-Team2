@@ -473,7 +473,8 @@ public class Pot : MonoBehaviour
 
     private void ManageTransform(int whatspore) //성장도에 따른 아기버섯 크기/위치 조절
     {
-        _babyMushrooms[whatspore].transform.localScale = new Vector3(0.5f*(100f+_growth)/100f, 0.5f*(100f+_growth)/100f, _babyMushrooms[whatspore].transform.localScale.z);
+        _babyMushrooms[whatspore].transform.localScale = new Vector3(1.5f*(100f+_growth)/100f, 1.5f*(100f+_growth)/100f, _babyMushrooms[whatspore].transform.localScale.z);
+        _babyMushrooms[whatspore].transform.position = new Vector3(_babyMushrooms[whatspore].transform.position.x, _babyMushrooms[whatspore].transform.position.y+0.1f, _babyMushrooms[whatspore].transform.position.z);
     }
 
     private void AppearWaterGauge()
